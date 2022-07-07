@@ -1,0 +1,29 @@
+{
+  "contacts": [
+    {
+      "firstName": "Alex",
+      "lastName": "Brown",
+      "phone": "+3 700 521 65",
+      "city": "New York",
+      "id": 0
+    },
+    {
+      "firstName": "Alexander",
+      "lastName": "Hamilton",
+      "phone": "201-225-2255",
+      "city": "Brooklyn"
+    },
+    {
+      "firstName": "George",
+      "lastName": "Washington",
+      "phone": "201-225-2244",
+      "city": "Washington"
+    },
+    {
+      "firstName": "Angelica",
+      "lastName": "Schuyler",
+      "phone": "201-225-3344",
+      "city": "Chicago"
+    }
+  ]
+}

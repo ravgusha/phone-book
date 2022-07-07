@@ -1,5 +1,14 @@
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Item from '../Item/Item';
+
+export type IPerson = {
+  firstName: string,
+  lastName: string,
+  phone: string,
+  city: string
+  id: number
+}
 
 const Container = styled.div`
   margin: 0 auto;
@@ -44,9 +53,19 @@ const StyledTable = styled.table`
   }
 `;
 
-const data = 
-
 const Table = () => {
+  const [contacts, setContacts] = useState([]);
+
+  useEffect(() => {
+    fetch('http://localhost:4000/contacts')
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        setContacts(data);
+      });
+  }, []);
+
   return (
     <Container>
       <div>
@@ -63,7 +82,7 @@ const Table = () => {
             </tr>
           </thead>
           <tbody>
-            {data.map((person) => (
+            {contacts.map((person: IPerson) => (
               <Item person={person} key={person.id} />
             ))}
           </tbody>

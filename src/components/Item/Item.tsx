@@ -1,4 +1,6 @@
-const Item = ({person}) => {
+import { IPerson } from "../Table/Table";
+
+const Item = ({person}: IPerson) => {
     console.log(person)
   return (
     <tr>
