@@ -9,6 +9,9 @@ const Item = ({person}) => {
       <td>
         <a href="#">Edit</a>
       </td>
+      <td>
+        <a href="#">Delete</a>
+      </td>
     </tr>
   );
 };
