@@ -82,8 +82,8 @@ const ContactList = () => {
             </tr>
           </thead>
           <tbody>
-            {contacts.map((person: IPerson) => (
-              <Contact person={person} key={person.id} />
+            {contacts.map((person: IPerson, index) => (
+              <Contact person={person} key={index} />
             ))}
           </tbody>
         </StyledTable>

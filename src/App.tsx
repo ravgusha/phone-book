@@ -1,17 +1,16 @@
 import './App.css';
-import Header from './components/Header/Header';
-import Table from './components/ContactList/ContactList';
-import { Routes } from 'react-router-dom';
+import {Route, Routes } from "react-router-dom";
+import AddContact from './containers/AddContact';
+import Contacts from './containers/Contacts';
+import EditContact from './containers/EditContact';
 
 function App() {
   return (
-    <div className="App">
       <Routes>
-      <Header />
-     <Table></Table>
+        <Route path="/" element={<Contacts />}></Route>
+        <Route path="/add" element={<AddContact />}></Route>
+        <Route path='/edit/:id' element={<EditContact/>} />
       </Routes>
-
-    </div>
   );
 }
 
