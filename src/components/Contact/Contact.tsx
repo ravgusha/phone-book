@@ -1,7 +1,6 @@
-import { IPerson } from "../Table/Table";
+import { IPerson } from "../ContactList/ContactList";
 
-const Item = ({person}: IPerson) => {
-    console.log(person)
+const Contact = ({person}) => {
   return (
     <tr>
       <td>{person.firstName}</td>
@@ -18,4 +17,4 @@ const Item = ({person}: IPerson) => {
   );
 };
 
-export default Item;
+export default Contact;

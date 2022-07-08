@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import Item from '../Item/Item';
+import Contact from '../Contact/Contact';
 
 export type IPerson = {
   firstName: string,
@@ -53,7 +53,7 @@ const StyledTable = styled.table`
   }
 `;
 
-const Table = () => {
+const ContactList = () => {
   const [contacts, setContacts] = useState([]);
 
   useEffect(() => {
@@ -83,7 +83,7 @@ const Table = () => {
           </thead>
           <tbody>
             {contacts.map((person: IPerson) => (
-              <Item person={person} key={person.id} />
+              <Contact person={person} key={person.id} />
             ))}
           </tbody>
         </StyledTable>
@@ -92,4 +92,4 @@ const Table = () => {
   );
 };
 
-export default Table;
+export default ContactList;
