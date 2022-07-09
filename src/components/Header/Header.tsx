@@ -1,29 +1,54 @@
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Container = styled.div`
   background-color: #95c7f1;
   border-radius: 5px;
   display: flex;
-  align-items: end
+  align-items: end;
+  width: 100%;
+  justify-content: space-between;
 `;
 
-const Title = styled.h1`
+const MainButton = styled.button`
   color: white;
+  font-size: 34px;
+  align-self: flex-end;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
   padding-left: 15px;
 `;
 
-const Subtitle = styled.p`
+const AddButton = styled.button`
   color: white;
-  padding-left: 15px;
+  padding-right: 15px;
   font-size: 24px;
-  opacity: 0.5;
+  align-self: flex-end;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 `;
 
 const Header = () => {
+  const navigate = useNavigate();
+
   return (
     <Container>
-      <Title>Phone book</Title>
-      <Subtitle>contacts</Subtitle>
+      <MainButton
+        onClick={() => {
+          navigate('/');
+        }}
+      >
+        Phone book
+      </MainButton>
+      <AddButton
+        onClick={() => {
+          navigate('/add');
+        }}
+      >
+        Add new contact
+      </AddButton>
     </Container>
   );
 };

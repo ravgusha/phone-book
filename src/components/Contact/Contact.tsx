@@ -1,9 +1,9 @@
 import { useNavigate, generatePath } from 'react-router';
-import { IPerson } from '../ContactList/ContactList';
+import { IContact } from '../../types.ts';
 
-const Contact = ({ person }) => {
+const Contact = ({ person }: IContact) => {
   const navigate = useNavigate();
-  console.log(person)
+
   const openPopup = (id: number) => {
     navigate(
       generatePath('edit/:id', {

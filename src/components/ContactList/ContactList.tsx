@@ -1,14 +1,7 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { IPerson } from '../../types.ts';
 import Contact from '../Contact/Contact';
-
-export type IPerson = {
-  firstName: string,
-  lastName: string,
-  phone: string,
-  city: string
-  id: number
-}
 
 const Container = styled.div`
   margin: 0 auto;
