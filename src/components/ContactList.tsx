@@ -1,7 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import styled from 'styled-components';
-import { IPerson } from '../../types.ts';
-import Contact from '../Contact/Contact';
+import { ContactContext } from '../content';
+import { IPerson } from '../types.ts';
+import * as styles from '../variables';
+import Contact from './Contact';
 
 const Container = styled.div`
   margin: 0 auto;
@@ -10,7 +12,7 @@ const Container = styled.div`
 
 const Title = styled.div`
   align-self: flex-start;
-  font-size: 25px;
+  font-size: ${styles.FONTSIZE_1};
   margin: 10px 0;
 `;
 
@@ -19,7 +21,7 @@ const StyledTable = styled.table`
   border: none;
   border-collapse: collapse;
   caption-side: bottom;
-  font-size: 24px;
+  font-size: ${styles.FONTSIZE_1};
   td,
   th {
     border: none;
@@ -33,7 +35,7 @@ const StyledTable = styled.table`
       background-color: #efefef;
     }
     :hover {
-      background-color: #95c7f1;
+      background-color: ${styles.MAIN_COLOR};
     }
   }
   thead > tr {
@@ -47,7 +49,7 @@ const StyledTable = styled.table`
 `;
 
 const ContactList = () => {
-  const [contacts, setContacts] = useState([]);
+  const context = useContext(ContactContext);
 
   useEffect(() => {
     fetch('http://localhost:4000/contacts')
@@ -55,7 +57,7 @@ const ContactList = () => {
         return response.json();
       })
       .then((data) => {
-        setContacts(data);
+        context.setContacts(data);
       });
   }, []);
 
@@ -75,7 +77,7 @@ const ContactList = () => {
             </tr>
           </thead>
           <tbody>
-            {contacts.map((person: IPerson, index) => (
+            {context.contacts.map((person: IPerson, index) => (
               <Contact person={person} key={index} />
             ))}
           </tbody>

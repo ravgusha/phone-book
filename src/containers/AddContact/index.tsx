@@ -1,8 +1,9 @@
 import { useForm, SubmitHandler } from 'react-hook-form';
 import styled from 'styled-components';
 import { v4 as uuidv4 } from 'uuid';
-import Header from '../../components/Header/Header';
+import Header from '../../components/Header';
 import { IPerson } from '../../types.ts';
+import * as styles from '../../variables';
 
 const Form = styled.form`
   display: flex;
@@ -21,7 +22,7 @@ const Container = styled.div`
 `;
 
 const Submit = styled.button`
-  background-color: #639cd9;
+  background-color: ${styles.SECONDARY_COLOR};
   text-transform: uppercase;
   outline: 0;
   border: 0;
@@ -56,6 +57,7 @@ const Error = styled.p`
 `;
 
 const AddPage = () => {
+
   const {
     register,
     formState: { errors },
@@ -93,14 +95,15 @@ const AddPage = () => {
             type="tel"
             {...register('phone', {
               required: true,
-              minLength: 9,
-              maxLength: 9,
-              pattern: /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/,
+              minLength: 6,
+              maxLength: 11,
+              pattern: /^\d+$/,
             })}
           />
           {errors.phone?.type === 'required' && <Error>Phone is required</Error>}
           {errors.phone?.type === 'pattern' && <Error>Phone number must be numbers only</Error>}
-          {errors.phone?.type === 'minLength' && <Error>Length must be equal to 10</Error>}
+          {errors.phone?.type === 'minLength' && <Error>Length must be between 6 and 11</Error>}
+          {errors.phone?.type === 'maxLength' && <Error>Length must be between 6 and 11</Error>}
           <Input placeholder="City" {...register('city', { required: true })} />
           {errors.city?.type === 'required' && <Error>City is required</Error>}
           <Submit type="submit"> Add</Submit>
