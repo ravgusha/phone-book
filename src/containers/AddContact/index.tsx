@@ -1,11 +1,12 @@
 import { useForm, SubmitHandler } from 'react-hook-form';
+import { useNavigate } from 'react-router';
 import styled from 'styled-components';
 import { v4 as uuidv4 } from 'uuid';
 import Header from '../../components/Header';
 import { IPerson } from '../../types.ts';
 import * as styles from '../../variables';
 
-const Form = styled.form`
+export const Form = styled.form`
   display: flex;
   flex-direction: column;
   width: 450px;
@@ -14,14 +15,14 @@ const Form = styled.form`
   background-color: #fff;
 `;
 
-const Container = styled.div`
+export const Container = styled.div`
   height: 94vh;
   display: flex;
   align-items: center;
   justify-content: center;
 `;
 
-const Submit = styled.button`
+export const Submit = styled.button`
   background-color: ${styles.SECONDARY_COLOR};
   text-transform: uppercase;
   outline: 0;
@@ -33,7 +34,7 @@ const Submit = styled.button`
   cursor: pointer;
 `;
 
-const Logo = styled.img`
+export const Logo = styled.img`
   width: 55px;
   height: 55px;
   align-self: center;
@@ -41,7 +42,7 @@ const Logo = styled.img`
   margin-bottom: 21px;
 `;
 
-const Input = styled.input`
+export const Input = styled.input`
   outline: 0;
   background: #f2f2f2;
   width: 100%;
@@ -52,11 +53,12 @@ const Input = styled.input`
   font-size: 14px;
 `;
 
-const Error = styled.p`
+export const Error = styled.p`
   color: red;
 `;
 
 const AddPage = () => {
+  const navigate = useNavigate();
 
   const {
     register,
@@ -77,6 +79,11 @@ const AddPage = () => {
       headers: {
         'Content-type': 'application/json; charset=UTF-8',
       },
+    }).then((res) => {
+      if (res.status > 200 && res.status < 300) {
+        alert('Contact created!');
+        navigate('/');
+      }
     });
   };
 

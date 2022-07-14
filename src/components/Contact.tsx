@@ -4,10 +4,11 @@ import { ContactContext } from '../content';
 import { IContact } from '../types.ts';
 
 const Contact = ({ person }: IContact) => {
-  const { contacts, setContacts } = useContext(ContactContext);
+  const { contacts, setContacts, setCurrentContact } = useContext(ContactContext);
   const navigate = useNavigate();
 
-  const openPopup = (id: number) => {
+  const editContact = (id: number) => {
+    setCurrentContact(id);
     navigate(
       generatePath('edit/:id', {
         id: id.toString(),
@@ -16,12 +17,14 @@ const Contact = ({ person }: IContact) => {
   };
 
   const deleteContact = (id: number) => {
-    console.log('del');
     fetch(`http://localhost:4000/contacts/${id}`, {
       method: 'DELETE',
-    }).then(() => {
-      const filteredBooks = contacts.filter((contact) => contact.id !== id);
-      setContacts([...filteredBooks]);
+    }).then((res) => {
+      if (res.status >= 200 && res.status < 300) {
+        alert('Contact deleted!');
+        const filteredBooks = contacts.filter((contact) => contact.id !== id);
+        setContacts([...filteredBooks]);
+      }
     });
   };
 
@@ -32,7 +35,7 @@ const Contact = ({ person }: IContact) => {
       <td>{person.phone}</td>
       <td>{person.city}</td>
       <td>
-        <button onClick={() => openPopup(person.id)}>Edit</button>
+        <button onClick={() => editContact(person.id)}>Edit</button>
       </td>
       <td>
         <button onClick={() => deleteContact(person.id)}>Delete</button>
