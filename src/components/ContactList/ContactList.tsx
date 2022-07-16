@@ -1,6 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { IPerson } from '../../types.ts';
+import { setContacts } from '../../redux/slice';
+import { IState } from '../../redux/types';
+import { IPerson } from '../../types';
 import Contact from '../Contact/Contact';
 
 const Container = styled.div`
@@ -47,7 +50,8 @@ const StyledTable = styled.table`
 `;
 
 const ContactList = () => {
-  const [contacts, setContacts] = useState([]);
+  const contacts = useSelector((state: IState) => state.contacts);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     fetch('http://localhost:4000/contacts')
@@ -55,7 +59,7 @@ const ContactList = () => {
         return response.json();
       })
       .then((data) => {
-        setContacts(data);
+        dispatch(setContacts(data));
       });
   }, []);
 
@@ -75,7 +79,7 @@ const ContactList = () => {
             </tr>
           </thead>
           <tbody>
-            {contacts.map((person: IPerson, index) => (
+            {contacts.map((person: IPerson, index: number) => (
               <Contact person={person} key={index} />
             ))}
           </tbody>

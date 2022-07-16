@@ -2,7 +2,7 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import styled from 'styled-components';
 import { v4 as uuidv4 } from 'uuid';
 import Header from '../../components/Header/Header';
-import { IPerson } from '../../types.ts';
+import { IPerson } from '../../types';
 
 const Form = styled.form`
   display: flex;

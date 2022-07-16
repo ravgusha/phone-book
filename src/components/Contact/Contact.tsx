@@ -1,5 +1,5 @@
 import { useNavigate, generatePath } from 'react-router';
-import { IContact } from '../../types.ts';
+import { IContact } from '../../types';
 
 const Contact = ({ person }: IContact) => {
   const navigate = useNavigate();
