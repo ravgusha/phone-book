@@ -1,11 +1,12 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
+
+import Contact from './Contact';
 import { setContacts } from '../redux/slice';
 import { IState } from '../redux/types';
 import { IPerson } from '../types';
 import * as styles from '../variables';
-import Contact from './Contact';
 
 const Container = styled.div`
   margin: 0 auto;

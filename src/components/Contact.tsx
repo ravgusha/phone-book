@@ -1,5 +1,6 @@
 import { useNavigate, generatePath } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
+
 import { IState } from '../redux/types';
 import { setContacts, setCurrentContact } from '../redux/slice';
 import { IContact } from '../types';

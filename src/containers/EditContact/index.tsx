@@ -1,14 +1,14 @@
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
+
+import { Container, Form, Logo, Input, Submit, Error } from '../AddContact';
 import Header from '../../components/Header';
 import { IState } from '../../redux/types';
 import { IPerson } from '../../types';
-import { Container, Form, Logo, Input, Submit, Error } from '../AddContact';
 
 const EditContact = () => {
   const navigate = useNavigate();
-  // const { contacts, currentContact } = useContext(ContactContext);
   const currentContact = useSelector((state: IState) => state.currentContact);
   const contacts = useSelector((state: IState) => state.contacts);
 

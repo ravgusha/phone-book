@@ -1,10 +1,12 @@
-import './App.css';
 import { Route, Routes } from 'react-router-dom';
+import { Provider } from 'react-redux';
+
 import AddContact from './containers/AddContact';
 import Contacts from './containers/Contacts';
 import EditContact from './containers/EditContact';
-import { Provider } from 'react-redux';
 import store from './redux/configureStore';
+
+import './App.css';
 
 function App() {
   return (
