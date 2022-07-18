@@ -1,5 +1,6 @@
-import { IPerson } from "../types";
+import { IPerson } from '../types';
 
 export interface IState {
-    contacts: Array<IPerson>;
-  }
+  contacts: Array<IPerson>;
+  currentContact: number | null;
+}

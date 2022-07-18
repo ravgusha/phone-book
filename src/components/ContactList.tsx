@@ -1,10 +1,11 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { setContacts } from '../../redux/slice';
-import { IState } from '../../redux/types';
-import { IPerson } from '../../types';
-import Contact from '../Contact/Contact';
+import { setContacts } from '../redux/slice';
+import { IState } from '../redux/types';
+import { IPerson } from '../types';
+import * as styles from '../variables';
+import Contact from './Contact';
 
 const Container = styled.div`
   margin: 0 auto;
@@ -13,7 +14,7 @@ const Container = styled.div`
 
 const Title = styled.div`
   align-self: flex-start;
-  font-size: 25px;
+  font-size: ${styles.FONTSIZE_1};
   margin: 10px 0;
 `;
 
@@ -22,7 +23,7 @@ const StyledTable = styled.table`
   border: none;
   border-collapse: collapse;
   caption-side: bottom;
-  font-size: 24px;
+  font-size: ${styles.FONTSIZE_1};
   td,
   th {
     border: none;
@@ -36,7 +37,7 @@ const StyledTable = styled.table`
       background-color: #efefef;
     }
     :hover {
-      background-color: #95c7f1;
+      background-color: ${styles.MAIN_COLOR};
     }
   }
   thead > tr {

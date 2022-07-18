@@ -1,8 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import * as styles from '../variables';
 
 const Container = styled.div`
-  background-color: #95c7f1;
+  background-color: ${styles.MAIN_COLOR};
   border-radius: 5px;
   display: flex;
   align-items: end;
@@ -18,16 +19,26 @@ const MainButton = styled.button`
   border: none;
   cursor: pointer;
   padding-left: 15px;
+
+  &:hover {
+    color: ${styles.SECONDARY_COLOR};
+    font-weight: bold;
+  }
 `;
 
 const AddButton = styled.button`
   color: white;
   padding-right: 15px;
-  font-size: 24px;
+  font-size: ${styles.FONTSIZE_1};
   align-self: flex-end;
   background-color: transparent;
   border: none;
   cursor: pointer;
+
+  &:hover {
+    color: ${styles.SECONDARY_COLOR};
+    font-weight: bold;
+  }
 `;
 
 const Header = () => {
