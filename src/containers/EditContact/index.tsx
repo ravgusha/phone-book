@@ -1,9 +1,7 @@
-import { useContext } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import Header from '../../components/Header';
-import { ContactContext } from '../../content';
 import { IState } from '../../redux/types';
 import { IPerson } from '../../types';
 import { Container, Form, Logo, Input, Submit, Error } from '../AddContact';

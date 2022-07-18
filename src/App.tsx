@@ -7,9 +7,6 @@ import { Provider } from 'react-redux';
 import store from './redux/configureStore';
 
 function App() {
-  type contactOptions = IPerson[] | [];
-  type currentContactOptions = number | null;
-
   return (
     <Provider store={store}>
       <Routes>
