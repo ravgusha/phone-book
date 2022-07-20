@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-key */
 import React from 'react';
 import styled from 'styled-components';
-import { useTable } from 'react-table';
+import { useTable, UseTableRowProps } from 'react-table';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { IState } from '../redux/types';
@@ -40,32 +40,6 @@ const Styles = styled.div`
 
 
 function Table({ columns, data }) {
-  const contacts = useSelector((state: IState) => state.contacts);
-const dispatch = useDispatch();
-
-const navigate = useNavigate();
-
-const editContact = (id: number) => {
-  console.log(id);
-  dispatch(setCurrentContact(id));
-  navigate(
-    generatePath('edit/:id', {
-      id: id.toString(),
-    })
-  );
-};
-
-const deleteContact = (id: number) => {
-  fetch(`http://localhost:4000/contacts/${id}`, {
-    method: 'DELETE',
-  }).then((res) => {
-    if (res.status >= 200 && res.status < 300) {
-      alert('Contact deleted!');
-      const filteredBooks = contacts.filter((contact) => contact.id !== id);
-      dispatch(setContacts([...filteredBooks]));
-    }
-  });
-};
 
   // Use the state and functions returned from useTable to build your UI
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable({
@@ -86,19 +60,13 @@ const deleteContact = (id: number) => {
         ))}
       </thead>
       <tbody {...getTableBodyProps()}>
-        {rows.map((row, i) => {
+        {rows.map((row) => {
           prepareRow(row);
           return (
             <tr {...row.getRowProps()}>
               {row.cells.map((cell) => {
                 return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>;
               })}
-              {/* <td>
-                <a onClick={() => editContact(person.id)}>Edit</a>
-              </td>
-              <td>
-                <button onClick={() => deleteContact(person.id)}>Delete</button>
-              </td> */}
             </tr>
           );
         })}
@@ -108,6 +76,33 @@ const deleteContact = (id: number) => {
 }
 
 function App() {
+  const contacts = useSelector((state: IState) => state.contacts);
+  const dispatch = useDispatch();
+  
+  const navigate = useNavigate();
+  
+  const editContact = (id: number) => {
+    console.log(id);
+    dispatch(setCurrentContact(id));
+    navigate(
+      generatePath('edit/:id', {
+        id: id.toString(),
+      })
+    );
+  };
+  
+  const deleteContact = (id: number) => {
+    fetch(`http://localhost:4000/contacts/${id}`, {
+      method: 'DELETE',
+    }).then((res) => {
+      if (res.status >= 200 && res.status < 300) {
+        alert('Contact deleted!');
+        const filteredBooks = contacts.filter((contact) => contact.id !== id);
+        dispatch(setContacts([...filteredBooks]));
+      }
+    });
+  };
+
   const columns = React.useMemo(
     () => [
       {
@@ -132,10 +127,20 @@ function App() {
           {
             Header: 'Edit',
             accessor: 'edit',
+            Cell: ({row}) => (
+              <div>
+                 <a onClick={() => editContact(row.original.id)}>Edit</a>
+              </div>
+            )
           },
           {
             Header: 'Delete',
             accessor: 'delete',
+            Cell: ({row}) => (
+              <div>
+                 <button onClick={() => deleteContact(row.original.id)}>Delete</button>
+              </div>
+            )
           },
         ],
       },
@@ -143,11 +148,9 @@ function App() {
     []
   );
 
-  const data = useSelector((state: IState) => state.contacts);
-
   return (
     <Styles>
-      <Table columns={columns} data={data} />
+      <Table columns={columns} data={contacts} />
     </Styles>
   );
 }
