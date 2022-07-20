@@ -7,6 +7,7 @@ import { setContacts } from '../redux/slice';
 import { IState } from '../redux/types';
 import { IPerson } from '../types';
 import * as styles from '../variables';
+import ContactTable from './ContactTable';
 
 const Container = styled.div`
   margin: 0 auto;
@@ -66,28 +67,29 @@ const ContactList = () => {
   }, []);
 
   return (
-    <Container>
-      <div>
-        <Title>Your contacts</Title>
-        <StyledTable>
-          <thead>
-            <tr>
-              <th scope="col">First Name</th>
-              <th scope="col">Last Name</th>
-              <th scope="col">Phone</th>
-              <th scope="col">City</th>
-              <th scope="col">Edit</th>
-              <th scope="col">Delete</th>
-            </tr>
-          </thead>
-          <tbody>
-            {contacts.map((person: IPerson, index: number) => (
-              <Contact person={person} key={index} />
-            ))}
-          </tbody>
-        </StyledTable>
-      </div>
-    </Container>
+    <ContactTable></ContactTable>
+    // <Container>
+    //   <div>
+    //     <Title>Your contacts</Title>
+    //     <StyledTable>
+    //       <thead>
+    //         <tr>
+    //           <th scope="col">First Name</th>
+    //           <th scope="col">Last Name</th>
+    //           <th scope="col">Phone</th>
+    //           <th scope="col">City</th>
+    //           <th scope="col">Edit</th>
+    //           <th scope="col">Delete</th>
+    //         </tr>
+    //       </thead>
+    //       <tbody>
+    //         {contacts.map((person: IPerson, index: number) => (
+    //           <Contact person={person} key={index} />
+    //         ))}
+    //       </tbody>
+    //     </StyledTable>
+    //   </div>
+    // </Container>
   );
 };
 

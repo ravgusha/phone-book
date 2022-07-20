@@ -58,6 +58,8 @@ export const Error = styled.p`
   color: red;
 `;
 
+const VALIDATION_DIGITS_ONLY = new RegExp(/^\d+$/);
+
 const AddPage = () => {
   const navigate = useNavigate();
 
@@ -105,11 +107,11 @@ const AddPage = () => {
               required: true,
               minLength: 6,
               maxLength: 11,
-              pattern: /^\d+$/,
+              pattern: VALIDATION_DIGITS_ONLY,
             })}
           />
           {errors.phone?.type === 'required' && <Error>Phone is required</Error>}
-          {errors.phone?.type === 'pattern' && <Error>Phone number must be numbers only</Error>}
+          {errors.phone?.type === 'pattern' && <Error>Phone number must be digits only</Error>}
           {errors.phone?.type === 'minLength' && <Error>Length must be between 6 and 11</Error>}
           {errors.phone?.type === 'maxLength' && <Error>Length must be between 6 and 11</Error>}
           <Input placeholder="City" {...register('city', { required: true })} />

@@ -6,7 +6,6 @@ import { setContacts, setCurrentContact } from '../redux/slice';
 import { IContact } from '../types';
 
 const Contact = ({ person }: IContact) => {
-  // const { contacts, setContacts, setCurrentContact } = useContext(ContactContext);
   const contacts = useSelector((state: IState) => state.contacts);
   const dispatch = useDispatch();
 
@@ -41,7 +40,7 @@ const Contact = ({ person }: IContact) => {
       <td>{person.phone}</td>
       <td>{person.city}</td>
       <td>
-        <button onClick={() => editContact(person.id)}>Edit</button>
+        <a onClick={() => editContact(person.id)}>Edit</a>
       </td>
       <td>
         <button onClick={() => deleteContact(person.id)}>Delete</button>
