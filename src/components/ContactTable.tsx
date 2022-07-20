@@ -1,10 +1,12 @@
 /* eslint-disable react/jsx-key */
-import React from 'react'
-import styled from 'styled-components'
-import { useTable } from 'react-table'
+import React from 'react';
+import styled from 'styled-components';
+import { useTable } from 'react-table';
 
-import { useSelector } from 'react-redux'
-import { IState } from '../redux/types'
+import { useDispatch, useSelector } from 'react-redux';
+import { IState } from '../redux/types';
+import { useNavigate, generatePath } from 'react-router';
+import { setCurrentContact, setContacts } from '../redux/slice';
 
 const Styles = styled.div`
   padding: 1rem;
@@ -33,28 +35,51 @@ const Styles = styled.div`
       }
     }
   }
-`
+`;
+
+
 
 function Table({ columns, data }) {
+  const contacts = useSelector((state: IState) => state.contacts);
+const dispatch = useDispatch();
+
+const navigate = useNavigate();
+
+const editContact = (id: number) => {
+  console.log(id);
+  dispatch(setCurrentContact(id));
+  navigate(
+    generatePath('edit/:id', {
+      id: id.toString(),
+    })
+  );
+};
+
+const deleteContact = (id: number) => {
+  fetch(`http://localhost:4000/contacts/${id}`, {
+    method: 'DELETE',
+  }).then((res) => {
+    if (res.status >= 200 && res.status < 300) {
+      alert('Contact deleted!');
+      const filteredBooks = contacts.filter((contact) => contact.id !== id);
+      dispatch(setContacts([...filteredBooks]));
+    }
+  });
+};
+
   // Use the state and functions returned from useTable to build your UI
-  const {
-    getTableProps,
-    getTableBodyProps,
-    headerGroups,
-    rows,
-    prepareRow,
-  } = useTable({
+  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable({
     columns,
     data,
-  })
+  });
 
   // Render the UI for your table
   return (
     <table {...getTableProps()}>
       <thead>
-        {headerGroups.map(headerGroup => (
+        {headerGroups.map((headerGroup) => (
           <tr {...headerGroup.getHeaderGroupProps()}>
-            {headerGroup.headers.map(column => (
+            {headerGroup.headers.map((column) => (
               <th {...column.getHeaderProps()}>{column.render('Header')}</th>
             ))}
           </tr>
@@ -62,45 +87,61 @@ function Table({ columns, data }) {
       </thead>
       <tbody {...getTableBodyProps()}>
         {rows.map((row, i) => {
-          prepareRow(row)
+          prepareRow(row);
           return (
             <tr {...row.getRowProps()}>
-              {row.cells.map(cell => {
-                return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
+              {row.cells.map((cell) => {
+                return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>;
               })}
+              {/* <td>
+                <a onClick={() => editContact(person.id)}>Edit</a>
+              </td>
+              <td>
+                <button onClick={() => deleteContact(person.id)}>Delete</button>
+              </td> */}
             </tr>
-          )
+          );
         })}
       </tbody>
     </table>
-  )
+  );
 }
 
 function App() {
   const columns = React.useMemo(
     () => [
       {
-        Header: 'First Name',
-
-      },
-      {
-        Header: 'Last Name',
-      },
-      {
-        Header: 'Phone',
-      },
-      {
-        Header: 'City',
-      },
-      {
-        Header: 'Edit',
-      },
-      {
-        Header: 'Delete',
+        Header: 'Contact list',
+        columns: [
+          {
+            Header: 'First Name',
+            accessor: 'firstName',
+          },
+          {
+            Header: 'Last Name',
+            accessor: 'lastName',
+          },
+          {
+            Header: 'Phone',
+            accessor: 'phone',
+          },
+          {
+            Header: 'City',
+            accessor: 'city',
+          },
+          {
+            Header: 'Edit',
+            accessor: 'edit',
+          },
+          {
+            Header: 'Delete',
+            accessor: 'delete',
+          },
+        ],
       },
     ],
     []
-  )
+  );
 
   const data = useSelector((state: IState) => state.contacts);
 
@@ -108,7 +149,7 @@ function App() {
     <Styles>
       <Table columns={columns} data={data} />
     </Styles>
-  )
+  );
 }
 
-export default App
+export default App;
