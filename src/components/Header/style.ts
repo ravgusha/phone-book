@@ -1,9 +1,8 @@
-import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-import * as styles from '../variables';
+import * as styles from '../../variables';
 
-const Container = styled.div`
+export const Container = styled.div`
   background-color: ${styles.MAIN_COLOR};
   border-radius: 5px;
   display: flex;
@@ -12,7 +11,7 @@ const Container = styled.div`
   justify-content: space-between;
 `;
 
-const MainButton = styled.button`
+export const MainButton = styled.button`
   color: white;
   font-size: 34px;
   align-self: flex-end;
@@ -27,7 +26,7 @@ const MainButton = styled.button`
   }
 `;
 
-const AddButton = styled.button`
+export const AddButton = styled.button`
   color: white;
   padding-right: 15px;
   font-size: ${styles.FONTSIZE_1};
@@ -41,28 +40,3 @@ const AddButton = styled.button`
     font-weight: bold;
   }
 `;
-
-const Header = () => {
-  const navigate = useNavigate();
-
-  return (
-    <Container>
-      <MainButton
-        onClick={() => {
-          navigate('/');
-        }}
-      >
-        Phone book
-      </MainButton>
-      <AddButton
-        onClick={() => {
-          navigate('/add');
-        }}
-      >
-        Add new contact
-      </AddButton>
-    </Container>
-  );
-};
-
-export default Header;

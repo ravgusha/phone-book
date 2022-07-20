@@ -3,8 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, generatePath } from 'react-router';
 import { Cell } from 'react-table';
 
-import Table from '../../components/ContactTable';
-import Styles from '../../components/ContactTable/style';
+import Table from '../../components/Table';
+import Styles from '../../components/Table/style';
 import Header from '../../components/Header';
 import { setContacts, setCurrentContact } from '../../redux/slice';
 import { IState } from '../../redux/types';
