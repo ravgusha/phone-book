@@ -6,7 +6,7 @@ import { IPerson } from "../../../types";
 import { VALIDATION_DIGITS_ONLY } from "../../../variables";
 import { Logo, Input, Submit, StyledForm, Error } from "../../style";
 
-const Form = () => {
+const AddForm = () => {
   const navigate = useNavigate();
 
   const {
@@ -64,4 +64,4 @@ const Form = () => {
   );
 };
 
-export default Form;
+export default AddForm;

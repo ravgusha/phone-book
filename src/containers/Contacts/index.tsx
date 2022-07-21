@@ -5,18 +5,21 @@ import { Cell } from 'react-table';
 
 import Table from '../../components/Table';
 import Styles from '../../components/Table/style';
-import Header from '../../components/Header';
 import { setContacts, setCurrentContact } from '../../redux/slice';
 import { IState } from '../../redux/types';
 import { IPerson } from '../../types';
 
-const ContactTable = () => {
+const Contacts = () => {
   const contacts = useSelector((state: IState) => state.contacts);
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
 
   useEffect(() => {
+    getContacts();
+  }, []);
+
+  const getContacts = () => {
     fetch('http://localhost:4000/contacts')
       .then((response) => {
         return response.json();
@@ -24,7 +27,7 @@ const ContactTable = () => {
       .then((data) => {
         dispatch(setContacts(data));
       });
-  }, []);
+  };
 
   const editContact = (id: number) => {
     console.log(id);
@@ -43,8 +46,7 @@ const ContactTable = () => {
     }).then((res) => {
       if (res.status >= 200 && res.status < 300) {
         alert('Contact deleted!');
-        const filteredBooks = contacts.filter((contact) => contact.id !== id);
-        dispatch(setContacts([...filteredBooks]));
+        getContacts();
       }
     });
   };
@@ -95,13 +97,10 @@ const ContactTable = () => {
   );
 
   return (
-    <>
-      <Header />
       <Styles>
         <Table columns={columns} data={contacts} />
       </Styles>
-    </>
   );
 };
 
-export default ContactTable;
+export default Contacts;

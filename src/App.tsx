@@ -3,6 +3,7 @@ import { Provider } from 'react-redux';
 
 import AddContact from './containers/AddContact';
 import Contacts from './containers/Contacts';
+import Header from './components/Header';
 import EditContact from './containers/EditContact';
 import store from './redux/configureStore';
 
@@ -11,6 +12,7 @@ import './App.css';
 function App() {
   return (
     <Provider store={store}>
+      <Header />
       <Routes>
         <Route path="/" element={<Contacts />}></Route>
         <Route path="/add" element={<AddContact />}></Route>

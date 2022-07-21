@@ -1,15 +1,11 @@
-import Header from '../../components/Header';
-import Form from './Form';
-import { Container } from './style';
+import { Container } from '../style';
+import AddForm from './Form';
 
 const AddContact = () => {
   return (
-    <>
-      <Header />
-      <Container>
-        <Form />
-      </Container>
-    </>
+    <Container>
+      <AddForm />
+    </Container>
   );
 };
 
