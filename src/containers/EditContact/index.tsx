@@ -2,10 +2,10 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 
-import { Container, Form, Logo, Input, Submit, Error } from '../AddContact';
 import Header from '../../components/Header';
 import { IState } from '../../redux/types';
 import { IPerson } from '../../types';
+import { Container, Input } from '../style';
 
 const EditContact = () => {
   const navigate = useNavigate();
