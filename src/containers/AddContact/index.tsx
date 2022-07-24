@@ -1,12 +1,7 @@
-import { Container } from '../style';
-import AddForm from './Form';
+import AddEditForm from '../../components/AddEditForm';
 
 const AddContact = () => {
-  return (
-    <Container>
-      <AddForm />
-    </Container>
-  );
+  return <AddEditForm />;
 };
 
 export default AddContact;
