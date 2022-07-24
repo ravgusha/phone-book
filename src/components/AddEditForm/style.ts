@@ -37,7 +37,11 @@ export const Logo = styled.img`
   margin-bottom: 21px;
 `;
 
-export const Input = styled.input`
+export const StyledLabel = styled.label`
+  /* margin-bottom: 5px; */
+`;
+
+export const StyledInput = styled.input`
   outline: 0;
   background: #f2f2f2;
   width: 100%;
