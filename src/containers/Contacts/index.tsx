@@ -5,8 +5,7 @@ import { Cell } from 'react-table';
 
 import Table from '../../components/Table';
 import Styles from '../../components/Table/style';
-import { setContacts, setCurrentContact } from '../../redux/slice';
-import { IState } from '../../redux/types';
+import { IState, setContacts, setCurrentContact } from '../../redux/slice';
 import { IPerson } from '../../types';
 
 const Contacts = () => {

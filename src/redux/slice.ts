@@ -1,6 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { IPerson } from '../types';
 
-const initialState = {
+export interface IState {
+  contacts: Array<IPerson>;
+  currentContact: number | null;
+}
+
+const initialState: IState = {
   contacts: [],
   currentContact: null
 };

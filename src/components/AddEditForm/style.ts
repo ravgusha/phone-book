@@ -2,10 +2,10 @@ import styled from 'styled-components';
 import * as styles from '../../variables';
 
 export const Container = styled.div`
-height: 94vh;
-display: flex;
-align-items: center;
-justify-content: center;
+  height: 94vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const StyledForm = styled.form`
@@ -38,7 +38,7 @@ export const Logo = styled.img`
 `;
 
 export const StyledLabel = styled.label`
-  /* margin-bottom: 5px; */
+  padding-top: 25px;
 `;
 
 export const StyledInput = styled.input`
@@ -46,7 +46,6 @@ export const StyledInput = styled.input`
   background: #f2f2f2;
   width: 100%;
   border: 0;
-  margin: 0 0 15px;
   padding: 15px;
   box-sizing: border-box;
   font-size: 14px;
@@ -54,4 +53,5 @@ export const StyledInput = styled.input`
 
 export const Error = styled.p`
   color: red;
+  font-size: 14px;
 `;

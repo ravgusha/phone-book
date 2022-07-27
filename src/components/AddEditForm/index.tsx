@@ -3,8 +3,7 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { v4 as uuidv4 } from 'uuid';
-import { setCurrentContact } from '../../redux/slice';
-import { IState } from '../../redux/types';
+import { IState, setCurrentContact } from '../../redux/slice';
 
 import { IPerson } from '../../types';
 import { VALIDATION_DIGITS_ONLY } from '../../variables';
@@ -24,24 +23,24 @@ const AddEditForm = () => {
 
   const AddContact = (data: IPerson) => {
     console.log(data);
-    // fetch('http://localhost:4000/contacts', {
-    //   method: 'POST',
-    //   body: JSON.stringify({
-    //     firstName: data.firstName,
-    //     lastName: data.lastName,
-    //     phone: data.phone,
-    //     city: data.city,
-    //     id: uuidv4().slice(0, 8),
-    //   }),
-    //   headers: {
-    //     'Content-type': 'application/json; charset=UTF-8',
-    //   },
-    // }).then((res) => {
-    //   if (res.status > 200 && res.status < 300) {
-    //     alert('Contact created!');
-    //     navigate('/');
-    //   }
-    // });
+    fetch('http://localhost:4000/contacts', {
+      method: 'POST',
+      body: JSON.stringify({
+        firstName: data.firstName,
+        lastName: data.lastName,
+        phone: data.phone,
+        city: data.city,
+        id: uuidv4().slice(0, 8),
+      }),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+    }).then((res) => {
+      if (res.status > 200 && res.status < 300) {
+        alert('Contact created!');
+        navigate('/');
+      }
+    });
   };
 
   const EditContact = (data: IPerson) => {
@@ -111,13 +110,16 @@ const AddEditForm = () => {
           register={register}
           rules={{
             required: 'You must enter your phone',
-            minLength: 6,
-            maxLength: 11,
-            pattern: VALIDATION_DIGITS_ONLY,
+            minLength: { value: 6, message: 'Phone length must be between 6 and 11' },
+            maxLength: { value: 11, message: 'Phone length must be between 6 and 11' },
+            pattern: {
+              value: VALIDATION_DIGITS_ONLY,
+              message: 'Phone number must contain digits only',
+            },
           }}
           errors={errors}
         ></Input>
-         <Input
+        <Input
           name={'city'}
           label={'City'}
           register={register}
