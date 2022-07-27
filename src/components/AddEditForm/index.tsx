@@ -8,7 +8,7 @@ import { IState, setCurrentContact } from '../../redux/slice';
 import { IPerson } from '../../types';
 import { VALIDATION_DIGITS_ONLY } from '../../variables';
 import Input from './Input';
-import { Logo, Submit, StyledForm, Error, Container } from './style';
+import { Logo, Submit, StyledForm, Container } from './style';
 
 const AddEditForm = () => {
   const navigate = useNavigate();

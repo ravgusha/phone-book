@@ -11,7 +11,7 @@ export const Container = styled.div`
   justify-content: space-between;
 `;
 
-export const MainButton = styled.button`
+export const StyledLogo = styled.button`
   color: white;
   font-size: 34px;
   align-self: flex-end;
