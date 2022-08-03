@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import * as styles from '../../variables';
 
 const Styles = styled.div`
-   margin: 0 auto;
+  margin: 0 auto;
   width: fit-content;
 
   table {

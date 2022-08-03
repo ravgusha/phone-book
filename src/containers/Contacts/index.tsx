@@ -3,20 +3,23 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, generatePath } from 'react-router';
 import { Cell } from 'react-table';
 
+import { useGetContactsQuery } from '../../components/api/apiSlice';
+import Spinner from '../../components/Spinner';
 import Table from '../../components/Table';
 import Styles from '../../components/Table/style';
 import { IState, setContacts, setCurrentContact } from '../../redux/slice';
 import { IPerson } from '../../types';
 
 const Contacts = () => {
-  const contacts = useSelector((state: IState) => state.contacts);
+  // const contacts = useSelector((state: IState) => state.contacts);
   const dispatch = useDispatch();
-
   const navigate = useNavigate();
 
-  useEffect(() => {
-    getContacts();
-  }, []);
+  // useEffect(() => {
+  //   getContacts();
+  // }, []);
+
+  const { data: contacts = [], isLoading } = useGetContactsQuery();
 
   const getContacts = () => {
     fetch('http://localhost:4000/contacts')
@@ -95,10 +98,14 @@ const Contacts = () => {
     []
   );
 
+  if (isLoading) {
+    return <Spinner />;
+  }
+
   return (
-      <Styles>
-        <Table columns={columns} data={contacts} />
-      </Styles>
+    <Styles>
+      <Table columns={columns} data={contacts} />
+    </Styles>
   );
 };
 
