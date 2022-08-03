@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, generatePath } from 'react-router';
 import { Cell } from 'react-table';
+import { useDeleteContactMutation, useGetContactsQuery } from '../../components/api/apiSlice';
 
-import { useGetContactsQuery } from '../../components/api/apiSlice';
 import Spinner from '../../components/Spinner';
 import Table from '../../components/Table';
 import Styles from '../../components/Table/style';
@@ -41,17 +41,7 @@ const Contacts = () => {
     );
   };
 
-  const deleteContact = (id: number) => {
-    console.log(id);
-    fetch(`http://localhost:4000/contacts/${id}`, {
-      method: 'DELETE',
-    }).then((res) => {
-      if (res.status >= 200 && res.status < 300) {
-        alert('Contact deleted!');
-        getContacts();
-      }
-    });
-  };
+  const [deleteContact] = useDeleteContactMutation();
 
   const columns = React.useMemo(
     () => [
