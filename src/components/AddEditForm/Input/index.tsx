@@ -30,7 +30,7 @@ const Input: React.FC<InputProps> = ({ name, label, rules, errors, register }) =
   if (errors && errors[name]) {
     errorMessages = errors[name].message;
   }
-  console.log(errors);
+
   return (
     <Fragment>
       <StyledLabel>{label}</StyledLabel>

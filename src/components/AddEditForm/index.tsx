@@ -1,46 +1,54 @@
-import { useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { v4 as uuidv4 } from 'uuid';
-import { IState, setCurrentContact } from '../../redux/slice';
+import { setCurrentContact } from '../../redux/slice';
 
 import { IPerson } from '../../types';
 import { VALIDATION_DIGITS_ONLY } from '../../variables';
+import { useCreateContactMutation, useGetContactsQuery } from '../api/apiSlice';
 import Input from './Input';
 import { Logo, Submit, StyledForm, Container } from './style';
+
+type IState = {
+  slice: {
+    currentContact: number | null;
+  };
+};
 
 const AddEditForm = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const contacts = useSelector((state: IState) => state.contacts);
-  const currentContactId = useSelector((state: IState) => state.currentContact);
-  const contactToEdit = contacts.find((contact) => contact.id === currentContactId);
+  const { data: contacts = [] } = useGetContactsQuery();
+  const [createContact, isSuccess] = useCreateContactMutation();
+  // console.log(contacts);
+  const state = useSelector((state: IState) => state);
+  const currentContactId = useSelector((state: IState) => state.slice.currentContact);
+  console.log(state, currentContactId);
 
+  const contactToEdit = contacts.find((contact) => {
+    // console.log(typeof contact.id, typeof currentContactId, currentContactId);
+    return contact.id === currentContactId;
+  });
+  console.log(contactToEdit);
   // Если в стейте есть ID, то выбран редим редактирования
   const isAddMode = !currentContactId;
 
   const AddContact = (data: IPerson) => {
-    console.log(data);
-    fetch('http://localhost:4000/contacts', {
-      method: 'POST',
-      body: JSON.stringify({
-        firstName: data.firstName,
-        lastName: data.lastName,
-        phone: data.phone,
-        city: data.city,
-        id: uuidv4().slice(0, 8),
-      }),
-      headers: {
-        'Content-type': 'application/json; charset=UTF-8',
-      },
-    }).then((res) => {
-      if (res.status > 200 && res.status < 300) {
-        alert('Contact created!');
-        navigate('/');
-      }
-    });
+    const newContact = {
+      firstName: data.firstName,
+      lastName: data.lastName,
+      phone: data.phone,
+      city: data.city,
+      id: uuidv4().slice(0, 8),
+    };
+    createContact(newContact).unwrap();
+
+    if (isSuccess) {
+      alert('Contact created!');
+      navigate('/');
+    }
   };
 
   const EditContact = (data: IPerson) => {
@@ -65,15 +73,7 @@ const AddEditForm = () => {
     });
   };
 
-  useEffect(() => {
-    // Если режим редактирования, то запонить форму старыми значениями
-    if (!isAddMode && contactToEdit) {
-      setValue('firstName', contactToEdit.firstName);
-      setValue('lastName', contactToEdit.lastName);
-      setValue('phone', contactToEdit.phone);
-      setValue('city', contactToEdit.city);
-    }
-  }, []);
+  // Если режим редактирования, то запонить форму старыми значениями
 
   const {
     register,
@@ -81,6 +81,13 @@ const AddEditForm = () => {
     handleSubmit,
     setValue,
   } = useForm<IPerson>();
+
+  if (!isAddMode && contactToEdit) {
+    setValue('firstName', contactToEdit.firstName);
+    setValue('lastName', contactToEdit.lastName);
+    setValue('phone', contactToEdit.phone);
+    setValue('city', contactToEdit.city);
+  }
 
   const onSubmit: SubmitHandler<IPerson> = (data) => {
     return isAddMode ? AddContact(data) : EditContact(data);
