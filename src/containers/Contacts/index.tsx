@@ -7,7 +7,7 @@ import Button from '../../components/Button';
 
 import Spinner from '../../components/Spinner';
 import Table from '../../components/Table';
-import Styles from '../../components/Table/style';
+import Container from '../../components/Table/style';
 import { setCurrentContact } from '../../redux/slice';
 import { IPerson } from '../../types';
 
@@ -63,7 +63,7 @@ const Contacts = () => {
             Header: 'Delete',
             accessor: 'delete',
             Cell: ({ row }: Cell<IPerson>) => (
-                <Button onClick={() => deleteContact(row.original.id)} label='Delete'></Button>
+              <Button onClick={() => deleteContact(row.original.id)} label="Delete"></Button>
             ),
           },
         ],
@@ -77,9 +77,15 @@ const Contacts = () => {
   }
 
   return (
-    <Styles>
+    <Container>
       <Table columns={columns} data={contacts} />
-    </Styles>
+      <Button
+        onClick={() => {
+          navigate('/add');
+        }}
+        label="+ create contact"
+      ></Button>
+    </Container>
   );
 };
 

@@ -25,18 +25,3 @@ export const StyledLogo = styled.button`
     font-weight: bold;
   }
 `;
-
-export const AddButton = styled.button`
-  color: white;
-  padding-right: 15px;
-  font-size: ${styles.FONTSIZE_1};
-  align-self: flex-end;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-
-  &:hover {
-    color: ${styles.SECONDARY_COLOR};
-    font-weight: bold;
-  }
-`;

@@ -2,9 +2,11 @@ import styled from 'styled-components';
 
 import * as styles from '../../variables';
 
-const Styles = styled.div`
+const Container = styled.div`
   margin: 0 auto;
   width: fit-content;
+  display: flex;
+  flex-direction: column;
 
   table {
     caption-side: top;
@@ -12,6 +14,7 @@ const Styles = styled.div`
     border-collapse: collapse;
     caption-side: bottom;
     font-size: ${styles.FONTSIZE_1};
+    margin-bottom: 7px;
 
     tbody tr {
       :nth-of-type(odd) {
@@ -36,9 +39,8 @@ const Styles = styled.div`
     td {
       margin: 0;
       padding: 0.5rem;
-      /* border: 1px solid black; */
     }
   }
 `;
 
-export default Styles;
+export default Container;
