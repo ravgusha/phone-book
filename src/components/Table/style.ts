@@ -26,7 +26,7 @@ const Styles = styled.div`
       background-color: #c2c2c2;
     }
 
-    tr {
+    tr:not(:first-child) {
       :hover {
         background-color: ${styles.MAIN_COLOR};
       }

@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate, generatePath } from 'react-router';
 import { Cell } from 'react-table';
 import { useDeleteContactMutation, useGetContactsQuery } from '../../components/api/apiSlice';
+import Button from '../../components/Button';
 
 import Spinner from '../../components/Spinner';
 import Table from '../../components/Table';
@@ -62,9 +63,7 @@ const Contacts = () => {
             Header: 'Delete',
             accessor: 'delete',
             Cell: ({ row }: Cell<IPerson>) => (
-              <div>
-                <button onClick={() => deleteContact(row.original.id)}>Delete</button>
-              </div>
+                <Button onClick={() => deleteContact(row.original.id)} label='Delete'></Button>
             ),
           },
         ],
