@@ -2,9 +2,9 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate, generatePath } from 'react-router';
 import { Cell } from 'react-table';
+
 import { useDeleteContactMutation, useGetContactsQuery } from '../../components/api/apiSlice';
 import Button from '../../components/Button';
-
 import Spinner from '../../components/Spinner';
 import Table from '../../components/Table';
 import Container from '../../components/Table/style';

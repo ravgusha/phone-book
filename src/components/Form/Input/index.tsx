@@ -8,6 +8,7 @@ import {
   FieldError,
   FieldValues,
 } from 'react-hook-form';
+import { ErrorMessage } from '@hookform/error-message';
 
 type FieldErrors<TFieldValues extends FieldValues = FieldValues> = DeepMap<
   TFieldValues,
@@ -30,12 +31,13 @@ const Input: React.FC<InputProps> = ({ name, label, rules, errors, register }) =
   if (errors && errors[name]) {
     errorMessages = errors[name].message;
   }
+  console.log(errorMessages)
 
   return (
     <Fragment>
       <StyledLabel>{label}</StyledLabel>
       <StyledInput {...register(name, rules)} />
-      {<Error>{errorMessages}</Error>}
+      {<ErrorMessage errors={errors} name={name}>{errorMessages}</ErrorMessage>}
     </Fragment>
   );
 };

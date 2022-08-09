@@ -16,7 +16,7 @@ type IState = {
   };
 };
 
-const AddEditForm = () => {
+const Form = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -102,8 +102,9 @@ const AddEditForm = () => {
           label={'First name'}
           register={register}
           rules={{ required: 'You must enter your first name' }}
-          errors={errors}
+          // errors={errors}
         ></Input>
+        
         <Input
           name={'lastName'}
           label={'Last name'}
@@ -139,4 +140,4 @@ const AddEditForm = () => {
   );
 };
 
-export default AddEditForm;
+export default Form;

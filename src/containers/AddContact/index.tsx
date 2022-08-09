@@ -1,4 +1,4 @@
-import AddEditForm from '../../components/AddEditForm';
+import AddEditForm from '../../components/Form';
 
 const AddContact = () => {
   return <AddEditForm />;
