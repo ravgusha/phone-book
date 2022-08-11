@@ -15,6 +15,11 @@ export const StyledForm = styled.form`
   padding: 25px;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
   background-color: #fff;
+
+  p {
+    color: red;
+    font-size: 14px;
+  }
 `;
 
 export const Submit = styled.button`
@@ -51,7 +56,3 @@ export const StyledInput = styled.input`
   font-size: 14px;
 `;
 
-export const Error = styled.p`
-  color: red;
-  font-size: 14px;
-`;

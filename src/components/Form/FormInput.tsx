@@ -1,6 +1,6 @@
 import { Fragment, InputHTMLAttributes } from 'react';
-import { IPerson } from '../../../types';
-import { StyledLabel, StyledInput, Error } from '../style';
+import { IPerson } from '../../types';
+import { StyledLabel, StyledInput} from './style';
 import {
   UseFormRegister,
   RegisterOptions,
@@ -8,7 +8,6 @@ import {
   FieldError,
   FieldValues,
 } from 'react-hook-form';
-import { ErrorMessage } from '@hookform/error-message';
 
 type FieldErrors<TFieldValues extends FieldValues = FieldValues> = DeepMap<
   TFieldValues,
@@ -24,20 +23,11 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 
 type nameOptions = 'id' | 'firstName' | 'lastName' | 'phone' | 'city';
 
-const Input: React.FC<InputProps> = ({ name, label, rules, errors, register }) => {
-  let errorMessages;
-
-  // Найти ошибку, соответствующую имени инпута, если есть
-  if (errors && errors[name]) {
-    errorMessages = errors[name].message;
-  }
-  console.log(errorMessages)
-
+const Input: React.FC<InputProps> = ({ name, label, rules,  register }) => {
   return (
     <Fragment>
       <StyledLabel>{label}</StyledLabel>
       <StyledInput {...register(name, rules)} />
-      {<ErrorMessage errors={errors} name={name}>{errorMessages}</ErrorMessage>}
     </Fragment>
   );
 };

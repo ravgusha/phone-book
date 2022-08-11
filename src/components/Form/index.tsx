@@ -1,3 +1,4 @@
+// import { ErrorMessage } from '@hookform/error-message';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
@@ -7,7 +8,8 @@ import { setCurrentContact } from '../../redux/slice';
 import { IPerson } from '../../types';
 import { VALIDATION_DIGITS_ONLY } from '../../variables';
 import { useCreateContactMutation, useGetContactsQuery } from '../api/apiSlice';
-import Input from './Input';
+import FormError from './FormError';
+import Input from './FormInput';
 import { Logo, Submit, StyledForm, Container } from './style';
 
 type IState = {
@@ -22,13 +24,11 @@ const Form = () => {
 
   const { data: contacts = [] } = useGetContactsQuery();
   const [createContact, isSuccess] = useCreateContactMutation();
-  // console.log(contacts);
   const state = useSelector((state: IState) => state);
   const currentContactId = useSelector((state: IState) => state.slice.currentContact);
   console.log(state, currentContactId);
 
   const contactToEdit = contacts.find((contact) => {
-    // console.log(typeof contact.id, typeof currentContactId, currentContactId);
     return contact.id === currentContactId;
   });
   console.log(contactToEdit);
@@ -102,16 +102,15 @@ const Form = () => {
           label={'First name'}
           register={register}
           rules={{ required: 'You must enter your first name' }}
-          // errors={errors}
         ></Input>
-        
+         <FormError errors={errors} name={'firstName'}></FormError>
         <Input
           name={'lastName'}
           label={'Last name'}
           register={register}
           rules={{ required: 'You must enter your last name' }}
-          errors={errors}
         ></Input>
+        <FormError errors={errors} name={'lastName'}></FormError>
         <Input
           name={'phone'}
           label={'Phone'}
@@ -125,15 +124,15 @@ const Form = () => {
               message: 'Phone number must contain digits only',
             },
           }}
-          errors={errors}
         ></Input>
+        <FormError errors={errors} name={'phone'}></FormError>
         <Input
           name={'city'}
           label={'City'}
           register={register}
           rules={{ required: 'You must enter your city' }}
-          errors={errors}
         ></Input>
+        <FormError errors={errors} name={'city'}></FormError>
         {isAddMode ? <Submit type="submit">Add</Submit> : <Submit type="submit">Edit</Submit>}
       </StyledForm>
     </Container>
