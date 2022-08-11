@@ -5,6 +5,8 @@ import { Cell } from 'react-table';
 
 import { useDeleteContactMutation, useGetContactsQuery } from '../../components/api/apiSlice';
 import Button from '../../components/Button';
+import CellDeleteButton from '../../components/Cells/CellDeleteButton';
+import CellEditButton from '../../components/Cells/CellEditButton';
 import Spinner from '../../components/Spinner';
 import Table from '../../components/Table';
 import Container from '../../components/Table/style';
@@ -53,18 +55,12 @@ const Contacts = () => {
           {
             Header: 'Edit',
             accessor: 'edit',
-            Cell: ({ row }: Cell<IPerson>) => (
-              <div>
-                <a onClick={() => editContact(row.original.id)}>Edit</a>
-              </div>
-            ),
+            Cell: ({ row }: Cell<IPerson>) => CellEditButton(row, editContact(row.original.id)),
           },
           {
             Header: 'Delete',
             accessor: 'delete',
-            Cell: ({ row }: Cell<IPerson>) => (
-              <Button onClick={() => deleteContact(row.original.id)} label="Delete"></Button>
-            ),
+            Cell: ({ row }: Cell<IPerson>) => CellDeleteButton(row, deleteContact(row.original.id)),
           },
         ],
       },

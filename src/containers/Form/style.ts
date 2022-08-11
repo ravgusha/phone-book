@@ -15,11 +15,6 @@ export const StyledForm = styled.form`
   padding: 25px;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
   background-color: #fff;
-
-  p {
-    color: red;
-    font-size: 14px;
-  }
 `;
 
 export const Submit = styled.button`
@@ -41,18 +36,3 @@ export const Logo = styled.img`
   color: #639cd9;
   margin-bottom: 21px;
 `;
-
-export const StyledLabel = styled.label`
-  padding-top: 25px;
-`;
-
-export const StyledInput = styled.input`
-  outline: 0;
-  background: #f2f2f2;
-  width: 100%;
-  border: 0;
-  padding: 15px;
-  box-sizing: border-box;
-  font-size: 14px;
-`;
-

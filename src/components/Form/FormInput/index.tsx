@@ -1,6 +1,5 @@
 import { Fragment, InputHTMLAttributes } from 'react';
-import { IPerson } from '../../types';
-import { StyledLabel, StyledInput} from './style';
+import { IPerson } from '../../../types';
 import {
   UseFormRegister,
   RegisterOptions,
@@ -8,6 +7,7 @@ import {
   FieldError,
   FieldValues,
 } from 'react-hook-form';
+import { StyledLabel, StyledInput } from './style';
 
 type FieldErrors<TFieldValues extends FieldValues = FieldValues> = DeepMap<
   TFieldValues,
