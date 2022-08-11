@@ -21,7 +21,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   register: UseFormRegister<IPerson>;
 }
 
-type nameOptions = 'id' | 'firstName' | 'lastName' | 'phone' | 'city';
+export type nameOptions = 'id' | 'firstName' | 'lastName' | 'phone' | 'city';
 
 const Input: React.FC<InputProps> = ({ name, label, rules,  register }) => {
   return (
