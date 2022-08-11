@@ -3,13 +3,13 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { v4 as uuidv4 } from 'uuid';
-import { setCurrentContact } from '../../redux/slice';
+import { setCurrentContact } from '../../../redux/slice';
 
-import { IPerson } from '../../types';
-import { VALIDATION_DIGITS_ONLY } from '../../variables';
-import { useCreateContactMutation, useGetContactsQuery } from '../../components/api/apiSlice';
-import FormError from '../../components/Form/FormError';
-import Input from '../../components/Form/FormInput';
+import { IPerson } from '../../../types';
+import { VALIDATION_DIGITS_ONLY } from '../../../variables';
+import { useCreateContactMutation, useGetContactsQuery } from '../../../components/api/apiSlice';
+import FormError from '../../../components/Form/FormError';
+import Input from '../../../components/Form/FormInput';
 import { Logo, Submit, StyledForm, Container } from './style';
 
 type IState = {

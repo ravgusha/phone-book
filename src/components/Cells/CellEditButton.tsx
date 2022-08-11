@@ -4,7 +4,7 @@ import { IPerson } from "../../types";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const CellEditButton = (row: Row<IPerson>, onClick: any) => {
-  ({ row }: Cell<IPerson>) => (
+  return (
     <div>
       <a onClick={() => onClick(row.original.id)}>Edit</a>
     </div>

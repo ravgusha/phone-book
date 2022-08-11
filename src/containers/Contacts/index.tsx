@@ -55,7 +55,7 @@ const Contacts = () => {
           {
             Header: 'Edit',
             accessor: 'edit',
-            Cell: ({ row }: Cell<IPerson>) => CellEditButton(row, editContact(row.original.id)),
+            // Cell: ({ row }: Cell<IPerson>) => CellEditButton(row, editContact(row.original.id)),
           },
           {
             Header: 'Delete',
