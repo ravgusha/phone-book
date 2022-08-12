@@ -7,11 +7,11 @@ const routes = [
     component: Contacts,
   },
   {
-    path: '/add',
+    path: 'contacts/add',
     component: Form,
   },
   {
-    path: '/form/:id',
+    path: 'contacts/form/:id',
     component: Form,
   },
 ];
