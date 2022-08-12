@@ -24,6 +24,8 @@ const Form = () => {
 
   const { data: contacts = [] } = useGetContactsQuery();
   const [createContact, isSuccess] = useCreateContactMutation();
+  const [updateContact, isError] = useCreateContactMutation();
+
   const state = useSelector((state: IState) => state);
   const currentContactId = useSelector((state: IState) => state.slice.currentContact);
   console.log(state, currentContactId);
@@ -52,25 +54,21 @@ const Form = () => {
   };
 
   const EditContact = (data: IPerson) => {
-    fetch(`http://localhost:4000/contacts/${currentContactId}`, {
-      method: 'PATCH',
-      body: JSON.stringify({
-        firstName: data.firstName,
-        lastName: data.lastName,
-        phone: data.phone,
-        city: data.city,
-        id: contactToEdit?.id,
-      }),
-      headers: {
-        'Content-type': 'application/json; charset=UTF-8',
-      },
-    }).then((res) => {
-      if (res.status >= 200 && res.status < 300) {
-        alert('Contact edited!');
-        dispatch(setCurrentContact(null));
-        navigate('/');
-      }
-    });
+    const updatedContact = {
+      firstName: data.firstName,
+      lastName: data.lastName,
+      phone: data.phone,
+      city: data.city,
+      id: contactToEdit?.id,
+    };
+
+    updateContact(updatedContact).unwrap();
+
+    if (!isError) {
+      alert('Contact edited!');
+      dispatch(setCurrentContact(null));
+      navigate('/');
+    }
   };
 
   // Если режим редактирования, то запонить форму старыми значениями
@@ -103,7 +101,7 @@ const Form = () => {
           register={register}
           rules={{ required: 'You must enter your first name' }}
         ></Input>
-         <FormError errors={errors} name={'firstName'}></FormError>
+        <FormError errors={errors} name={'firstName'}></FormError>
         <Input
           name={'lastName'}
           label={'Last name'}

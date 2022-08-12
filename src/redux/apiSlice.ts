@@ -18,6 +18,14 @@ export const apiSlice = createApi({
       }),
       invalidatesTags: ['Contacts'],
     }),
+    updateContact: builder.mutation({
+      query: (contact) => ({
+        url: `/contacts/${contact.id}`,
+        method: 'PATCH',
+        body: contact,
+      }),
+      invalidatesTags: ['Contacts'],
+    }),
     deleteContact: builder.mutation({
       query: (id: number) => ({
         url: `/contacts/${id}`,
@@ -28,4 +36,4 @@ export const apiSlice = createApi({
   }),
 });
 
-export const { useGetContactsQuery, useDeleteContactMutation, useCreateContactMutation } = apiSlice;
+export const { useGetContactsQuery, useDeleteContactMutation, useCreateContactMutation, useUpdateContactMutation } = apiSlice;
