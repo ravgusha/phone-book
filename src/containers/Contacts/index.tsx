@@ -16,7 +16,6 @@ const Contacts = () => {
   const { data: contacts = [], isLoading } = useGetContactsQuery();
 
   const editContact = (id: number) => {
-    console.log(typeof id);
     dispatch(setCurrentContact(id));
     navigate(
       generatePath('form/:id', {

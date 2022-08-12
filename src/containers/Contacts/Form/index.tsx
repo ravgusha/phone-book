@@ -29,12 +29,10 @@ const Form = () => {
 
   const state = useSelector((state: IState) => state);
   const currentContactId = useSelector((state: IState) => state.slice.currentContact);
-  console.log(state, currentContactId);
 
   const contactToEdit = contacts.find((contact) => {
     return contact.id === currentContactId;
   });
-  console.log(contactToEdit);
   // Если в стейте есть ID, то выбран редим редактирования
   const isAddMode = !currentContactId;
 
