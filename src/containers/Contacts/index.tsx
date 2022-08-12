@@ -23,7 +23,7 @@ const Contacts = () => {
     console.log(typeof id);
     dispatch(setCurrentContact(id));
     navigate(
-      generatePath('edit/:id', {
+      generatePath('form/:id', {
         id: id.toString(),
       })
     );
@@ -55,12 +55,22 @@ const Contacts = () => {
           {
             Header: 'Edit',
             accessor: 'edit',
+            Cell: ({ row }: Cell<IPerson>) => (
+              <div>
+                <a onClick={() => editContact(row.original.id)}>Edit</a>
+              </div>
+            ),
+            // Не работает
             // Cell: ({ row }: Cell<IPerson>) => CellEditButton(row, editContact(row.original.id)),
           },
           {
             Header: 'Delete',
             accessor: 'delete',
-            Cell: ({ row }: Cell<IPerson>) => CellDeleteButton(row, deleteContact(row.original.id)),
+            Cell: ({ row }: Cell<IPerson>) => (
+              <Button onClick={() => deleteContact(row.original.id)} label="Delete"></Button>
+            ),
+            // Не работает
+            // Cell: ({ row }: Cell<IPerson>) => CellDeleteButton(row, deleteContact(row.original.id)),
           },
         ],
       },
