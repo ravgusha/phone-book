@@ -7,7 +7,7 @@ import { setCurrentContact } from '../../../redux/slice';
 
 import { IPerson } from '../../../types';
 import { VALIDATION_DIGITS_ONLY } from '../../../variables';
-import { useCreateContactMutation, useGetContactsQuery } from '../../../redux/apiSlice';
+import { useCreateContactMutation, useGetContactsQuery, useUpdateContactMutation } from '../../../redux/apiSlice';
 import FormError from '../../../components/Form/FormError';
 import Input from '../../../components/Form/FormInput';
 import { Logo, Submit, StyledForm, Container } from './style';
@@ -23,8 +23,9 @@ const Form = () => {
   const dispatch = useDispatch();
 
   const { data: contacts = [] } = useGetContactsQuery();
-  const [createContact, isSuccess] = useCreateContactMutation();
-  const [updateContact, isError] = useCreateContactMutation();
+
+  const [createContact, { isSuccess }] = useCreateContactMutation();
+  const [updateContact, { error }] = useUpdateContactMutation();
 
   const state = useSelector((state: IState) => state);
   const currentContactId = useSelector((state: IState) => state.slice.currentContact);
@@ -45,12 +46,11 @@ const Form = () => {
       city: data.city,
       id: uuidv4().slice(0, 8),
     };
-    createContact(newContact).unwrap();
-
-    if (isSuccess) {
+    
+    createContact(newContact).unwrap().then(()=> {
       alert('Contact created!');
       navigate('/');
-    }
+    });
   };
 
   const EditContact = (data: IPerson) => {
@@ -62,13 +62,11 @@ const Form = () => {
       id: contactToEdit?.id,
     };
 
-    updateContact(updatedContact).unwrap();
-
-    if (!isError) {
+    updateContact(updatedContact).unwrap().then(()=> {
       alert('Contact edited!');
       dispatch(setCurrentContact(null));
       navigate('/');
-    }
+    });
   };
 
   // Если режим редактирования, то запонить форму старыми значениями

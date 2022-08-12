@@ -36,4 +36,9 @@ export const apiSlice = createApi({
   }),
 });
 
-export const { useGetContactsQuery, useDeleteContactMutation, useCreateContactMutation, useUpdateContactMutation } = apiSlice;
+export const {
+  useGetContactsQuery,
+  useDeleteContactMutation,
+  useCreateContactMutation,
+  useUpdateContactMutation,
+} = apiSlice;
