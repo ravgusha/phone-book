@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { useNavigate, generatePath } from 'react-router';
 
-import { useDeleteContactMutation, useGetContactsQuery } from '../../components/api/apiSlice';
+import { useDeleteContactMutation, useGetContactsQuery } from '../../redux/apiSlice';
 import Button from '../../components/Button';
 import Spinner from '../../components/Spinner';
 import Table from '../../components/Table';

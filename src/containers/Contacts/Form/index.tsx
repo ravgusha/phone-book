@@ -7,7 +7,7 @@ import { setCurrentContact } from '../../../redux/slice';
 
 import { IPerson } from '../../../types';
 import { VALIDATION_DIGITS_ONLY } from '../../../variables';
-import { useCreateContactMutation, useGetContactsQuery } from '../../../components/api/apiSlice';
+import { useCreateContactMutation, useGetContactsQuery } from '../../../redux/apiSlice';
 import FormError from '../../../components/Form/FormError';
 import Input from '../../../components/Form/FormInput';
 import { Logo, Submit, StyledForm, Container } from './style';
