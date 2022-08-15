@@ -3,5 +3,5 @@ export type IPerson = {
   lastName: string;
   phone: string;
   city: string;
-  id: number;
+  id: string;
 };

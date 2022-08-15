@@ -1,10 +1,9 @@
-import { useForm, SubmitHandler } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { v4 as uuidv4 } from 'uuid';
 
 import { IPerson } from '../../../types';
-import { VALIDATION_DIGITS_ONLY } from '../../../variables';
 import FormInput from '../../../components/Form/FormInput';
 import { setCurrentContact } from '../../../redux/slice';
 import {
@@ -15,9 +14,11 @@ import {
 
 import { Logo, Submit, StyledForm, Container } from './style';
 
+const VALIDATION_DIGITS_ONLY = new RegExp(/^\d+$/);
+
 type IState = {
   slice: {
-    currentContact: number | null;
+    currentContact: string | null;
   };
 };
 
@@ -35,42 +36,34 @@ const Form = () => {
   const contactToEdit = contacts.find((contact) => {
     return contact.id === currentContactId;
   });
+
   // Если в стейте есть ID, то выбран редим редактирования
+
   const isAddMode = !currentContactId;
 
-  const AddContact = (data: IPerson) => {
-    const newContact = {
+  const onSubmitHandler = (data: IPerson) => {
+    const contact = {
       firstName: data.firstName,
       lastName: data.lastName,
       phone: data.phone,
       city: data.city,
-      id: uuidv4().slice(0, 8),
+      id: isAddMode ? uuidv4().slice(0, 8) : contactToEdit?.id,
     };
 
-    createContact(newContact)
-      .unwrap()
-      .then(() => {
-        alert('Contact created!');
-        navigate('/contacts');
-      });
-  };
-
-  const EditContact = (data: IPerson) => {
-    const updatedContact = {
-      firstName: data.firstName,
-      lastName: data.lastName,
-      phone: data.phone,
-      city: data.city,
-      id: contactToEdit?.id,
-    };
-
-    updateContact(updatedContact)
-      .unwrap()
-      .then(() => {
-        alert('Contact edited!');
-        dispatch(setCurrentContact(null));
-        navigate('/');
-      });
+    isAddMode
+      ? createContact(contact)
+          .unwrap()
+          .then(() => {
+            alert('Contact created!');
+            navigate('/contacts');
+          })
+      : updateContact(contact)
+          .unwrap()
+          .then(() => {
+            alert('Contact edited!');
+            dispatch(setCurrentContact(null));
+            navigate('/contacts');
+          });
   };
 
   // Если режим редактирования, то запонить форму старыми значениями
@@ -89,13 +82,9 @@ const Form = () => {
     setValue('city', contactToEdit.city);
   }
 
-  const onSubmit: SubmitHandler<IPerson> = (data) => {
-    return isAddMode ? AddContact(data) : EditContact(data);
-  };
-
   return (
     <Container>
-      <StyledForm onSubmit={handleSubmit(onSubmit)}>
+      <StyledForm onSubmit={handleSubmit(onSubmitHandler)}>
         <Logo src="../../../contact.svg" />
         <FormInput
           name={'firstName'}

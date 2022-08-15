@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import * as styles from '../../variables';
+import * as styles from '../../styleConstants';
 
 const Container = styled.div`
   margin: 0 auto;
