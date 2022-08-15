@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 
 const StyledSpinner = styled.div`
+    width: 80px;
+    height: 80px;
+    margin-left: -40px;
     position: fixed;
     top: 50%;
     left: 50%;
@@ -8,10 +11,7 @@ const StyledSpinner = styled.div`
     border: 10px solid #f3f3f3;
     border-top: 10px solid #3498db;
     border-radius: 50%;
-    width: 80px;
-    height: 80px;
     animation: spin 1s linear infinite;
-    margin-left: -40px;
   }
 
   @keyframes spin {

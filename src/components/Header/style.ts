@@ -12,13 +12,13 @@ export const Container = styled.div`
 `;
 
 export const StyledLogo = styled.button`
+  padding-left: 15px;
   color: white;
+  background-color: transparent;
   font-size: 34px;
   align-self: flex-end;
-  background-color: transparent;
   border: none;
   cursor: pointer;
-  padding-left: 15px;
 
   &:hover {
     color: ${styles.SECONDARY_COLOR};

@@ -9,12 +9,12 @@ const Container = styled.div`
   flex-direction: column;
 
   table {
-    caption-side: top;
+    margin-bottom: 7px;
+    font-size: ${styles.FONTSIZE_1};
     border: none;
     border-collapse: collapse;
+    caption-side: top;
     caption-side: bottom;
-    font-size: ${styles.FONTSIZE_1};
-    margin-bottom: 7px;
 
     tbody tr {
       :nth-of-type(odd) {

@@ -1,12 +1,12 @@
-import { Row, Cell } from "react-table";
+import { Row } from "react-table";
 
 import { IPerson } from "../../types";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const CellEditButton = (row: Row<IPerson>, onClick: any) => {
+const CellEditButton = (row: Row<IPerson>, onClick?: any) => {
   return (
     <div>
-      <a onClick={() => onClick(row.original.id)}>Edit</a>
+      <a href={'form/' + row.original.id} onClick={() => onClick(row.original.id)}>Edit</a>
     </div>
   );
 };

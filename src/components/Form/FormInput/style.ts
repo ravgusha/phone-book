@@ -5,11 +5,11 @@ export const StyledLabel = styled.label`
 `;
 
 export const StyledInput = styled.input`
-  outline: 0;
-  background: #f2f2f2;
   width: 100%;
-  border: 0;
   padding: 15px;
   box-sizing: border-box;
+  background: #f2f2f2;
   font-size: 14px;
+  border: 0;
+  outline: 0;
 `;

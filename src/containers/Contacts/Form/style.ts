@@ -9,30 +9,30 @@ export const Container = styled.div`
 `;
 
 export const StyledForm = styled.form`
-  display: flex;
-  flex-direction: column;
   width: 450px;
   padding: 25px;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  display: flex;
   background-color: #fff;
+  flex-direction: column;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 `;
 
 export const Submit = styled.button`
+  padding: 10px;
+  margin-top: 15px;
+  color: #ffffff;
   background-color: ${styles.SECONDARY_COLOR};
-  text-transform: uppercase;
+  font-size: 14px;
   outline: 0;
   border: 0;
-  padding: 10px;
-  color: #ffffff;
-  font-size: 14px;
-  margin-top: 15px;
+  text-transform: uppercase;
   cursor: pointer;
 `;
 
 export const Logo = styled.img`
   width: 55px;
   height: 55px;
-  align-self: center;
-  color: #639cd9;
   margin-bottom: 21px;
+  color: #639cd9;
+  align-self: center;
 `;

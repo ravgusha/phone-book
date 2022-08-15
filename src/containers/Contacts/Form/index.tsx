@@ -24,10 +24,9 @@ const Form = () => {
 
   const { data: contacts = [] } = useGetContactsQuery();
 
-  const [createContact, { isSuccess }] = useCreateContactMutation();
-  const [updateContact, { error }] = useUpdateContactMutation();
+  const [createContact] = useCreateContactMutation();
+  const [updateContact] = useUpdateContactMutation();
 
-  const state = useSelector((state: IState) => state);
   const currentContactId = useSelector((state: IState) => state.slice.currentContact);
 
   const contactToEdit = contacts.find((contact) => {
