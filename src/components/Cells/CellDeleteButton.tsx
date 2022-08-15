@@ -7,7 +7,7 @@ import Button from '../Button';
 const CellDeleteButton = (row: Row<IPerson>, onClick: any) => {
   const onDeleteHandle = () => onClick(row.original.id);
 
-  return <Button onClick={onDeleteHandle} label="Delete"></Button>;
+  return <Button onClick={onDeleteHandle} label="Delete" />;
 };
 
 export default CellDeleteButton;

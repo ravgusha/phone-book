@@ -7,7 +7,11 @@ import { setCurrentContact } from '../../../redux/slice';
 
 import { IPerson } from '../../../types';
 import { VALIDATION_DIGITS_ONLY } from '../../../variables';
-import { useCreateContactMutation, useGetContactsQuery, useUpdateContactMutation } from '../../../redux/apiSlice';
+import {
+  useCreateContactMutation,
+  useGetContactsQuery,
+  useUpdateContactMutation,
+} from '../../../redux/apiSlice';
 import FormError from '../../../components/Form/FormError';
 import Input from '../../../components/Form/FormInput';
 import { Logo, Submit, StyledForm, Container } from './style';
@@ -43,11 +47,13 @@ const Form = () => {
       city: data.city,
       id: uuidv4().slice(0, 8),
     };
-    
-    createContact(newContact).unwrap().then(()=> {
-      alert('Contact created!');
-      navigate('/');
-    });
+
+    createContact(newContact)
+      .unwrap()
+      .then(() => {
+        alert('Contact created!');
+        navigate('/contacts');
+      });
   };
 
   const EditContact = (data: IPerson) => {
@@ -59,11 +65,13 @@ const Form = () => {
       id: contactToEdit?.id,
     };
 
-    updateContact(updatedContact).unwrap().then(()=> {
-      alert('Contact edited!');
-      dispatch(setCurrentContact(null));
-      navigate('/');
-    });
+    updateContact(updatedContact)
+      .unwrap()
+      .then(() => {
+        alert('Contact edited!');
+        dispatch(setCurrentContact(null));
+        navigate('/');
+      });
   };
 
   // Если режим редактирования, то запонить форму старыми значениями
@@ -89,21 +97,21 @@ const Form = () => {
   return (
     <Container>
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
-        <Logo src="../../../contact.svg"></Logo>
+        <Logo src="../../../contact.svg" />
         <Input
           name={'firstName'}
           label={'First name'}
           register={register}
           rules={{ required: 'You must enter your first name' }}
-        ></Input>
-        <FormError errors={errors} name={'firstName'}></FormError>
+        />
+        <FormError errors={errors} name={'firstName'} />
         <Input
           name={'lastName'}
           label={'Last name'}
           register={register}
           rules={{ required: 'You must enter your last name' }}
-        ></Input>
-        <FormError errors={errors} name={'lastName'}></FormError>
+        />
+        <FormError errors={errors} name={'lastName'} />
         <Input
           name={'phone'}
           label={'Phone'}
@@ -117,15 +125,15 @@ const Form = () => {
               message: 'Phone number must contain digits only',
             },
           }}
-        ></Input>
-        <FormError errors={errors} name={'phone'}></FormError>
+        />
+        <FormError errors={errors} name={'phone'} />
         <Input
           name={'city'}
           label={'City'}
           register={register}
           rules={{ required: 'You must enter your city' }}
-        ></Input>
-        <FormError errors={errors} name={'city'}></FormError>
+        />
+        <FormError errors={errors} name={'city'} />
         {isAddMode ? <Submit type="submit">Add</Submit> : <Submit type="submit">Edit</Submit>}
       </StyledForm>
     </Container>

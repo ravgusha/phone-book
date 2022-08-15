@@ -16,7 +16,7 @@ const FormError = ({ name, errors }: IFormError) => {
       errors={errors}
       name={name}
       render={({ message }) => <StyledError>{message}</StyledError>}
-    ></ErrorMessage>
+    />
   );
 };
 

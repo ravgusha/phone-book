@@ -14,7 +14,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Navigate to="/contacts" />} />
         {routes.map(({ path, component: Component }, i) => (
-          <Route key={i} path={path} element={<Component />} /> // warning
+          <Route key={i} path={path} element={<Component />} /> 
         ))}
       </Routes>
     </Provider>

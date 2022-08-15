@@ -40,7 +40,7 @@ const Contacts = () => {
           navigate('/contacts/add');
         }}
         label="+ create contact"
-      ></Button>
+      />
     </Container>
   );
 };
