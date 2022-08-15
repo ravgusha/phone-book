@@ -1,19 +1,18 @@
-// import { ErrorMessage } from '@hookform/error-message';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { v4 as uuidv4 } from 'uuid';
-import { setCurrentContact } from '../../../redux/slice';
 
 import { IPerson } from '../../../types';
 import { VALIDATION_DIGITS_ONLY } from '../../../variables';
+import FormInput from '../../../components/Form/FormInput';
+import { setCurrentContact } from '../../../redux/slice';
 import {
   useCreateContactMutation,
   useGetContactsQuery,
   useUpdateContactMutation,
 } from '../../../redux/apiSlice';
-import FormError from '../../../components/Form/FormError';
-import Input from '../../../components/Form/FormInput';
+
 import { Logo, Submit, StyledForm, Container } from './style';
 
 type IState = {
@@ -98,21 +97,21 @@ const Form = () => {
     <Container>
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
         <Logo src="../../../contact.svg" />
-        <Input
+        <FormInput
           name={'firstName'}
           label={'First name'}
           register={register}
           rules={{ required: 'You must enter your first name' }}
+          errors={errors}
         />
-        <FormError errors={errors} name={'firstName'} />
-        <Input
+        <FormInput
           name={'lastName'}
           label={'Last name'}
           register={register}
           rules={{ required: 'You must enter your last name' }}
+          errors={errors}
         />
-        <FormError errors={errors} name={'lastName'} />
-        <Input
+        <FormInput
           name={'phone'}
           label={'Phone'}
           register={register}
@@ -125,15 +124,15 @@ const Form = () => {
               message: 'Phone number must contain digits only',
             },
           }}
+          errors={errors}
         />
-        <FormError errors={errors} name={'phone'} />
-        <Input
+        <FormInput
           name={'city'}
           label={'City'}
           register={register}
           rules={{ required: 'You must enter your city' }}
+          errors={errors}
         />
-        <FormError errors={errors} name={'city'} />
         {isAddMode ? <Submit type="submit">Add</Submit> : <Submit type="submit">Edit</Submit>}
       </StyledForm>
     </Container>

@@ -8,6 +8,7 @@ import {
   FieldValues,
 } from 'react-hook-form';
 import { StyledLabel, StyledInput } from './style';
+import FormError from '../FormError';
 
 type FieldErrors<TFieldValues extends FieldValues = FieldValues> = DeepMap<
   TFieldValues,
@@ -17,19 +18,20 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: nameOptions;
   label: string;
   rules: RegisterOptions;
-  errors?: FieldErrors;
+  errors: FieldErrors;
   register: UseFormRegister<IPerson>;
 }
 
 export type nameOptions = 'id' | 'firstName' | 'lastName' | 'phone' | 'city';
 
-const Input: React.FC<InputProps> = ({ name, label, rules,  register }) => {
+const FormInput: React.FC<InputProps> = ({ name, label, rules, errors, register }) => {
   return (
     <Fragment>
       <StyledLabel>{label}</StyledLabel>
       <StyledInput {...register(name, rules)} />
+      <FormError errors={errors} name={name} />
     </Fragment>
   );
 };
 
-export default Input;
+export default FormInput;
