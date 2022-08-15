@@ -1,10 +1,11 @@
 import { Cell } from 'react-table';
 
-import Button from '../../components/Button';
+import CellDeleteButton from '../../components/Cells/CellDeleteButton';
+import CellEditButton from '../../components/Cells/CellEditButton';
 import { IPerson } from '../../types';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const tableColumns = (editContact: any, deleteContact:any) => {
+const tableColumns = (editContact: any, deleteContact: any) => {
   return [
     {
       Header: 'Contact list',
@@ -28,22 +29,12 @@ const tableColumns = (editContact: any, deleteContact:any) => {
         {
           Header: 'Edit',
           accessor: 'edit',
-          Cell: ({ row }: Cell<IPerson>) => (
-            <div>
-              <a onClick={() => editContact(row.original.id)}>Edit</a>
-            </div>
-          ),
-          // Не работает
-          // Cell: ({ row }: Cell<IPerson>) => CellEditButton(row, editContact(row.original.id)),
+          Cell: ({ row }: Cell<IPerson>) => CellEditButton(row, editContact),
         },
         {
           Header: 'Delete',
           accessor: 'delete',
-          Cell: ({ row }: Cell<IPerson>) => (
-            <Button onClick={() => deleteContact(row.original.id)} label="Delete"></Button>
-          ),
-          // Не работает
-          // Cell: ({ row }: Cell<IPerson>) => CellDeleteButton(row, deleteContact(row.original.id)),
+          Cell: ({ row }: Cell<IPerson>) => CellDeleteButton(row, deleteContact),
         },
       ],
     },

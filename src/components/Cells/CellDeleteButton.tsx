@@ -5,7 +5,9 @@ import Button from '../Button';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const CellDeleteButton = (row: Row<IPerson>, onClick: any) => {
-  return <Button onClick={() => onClick(row.original.id)} label="Delete"></Button>;
+  const onDeleteHandle = () => onClick(row.original.id);
+
+  return <Button onClick={onDeleteHandle} label="Delete"></Button>;
 };
 
 export default CellDeleteButton;
