@@ -39,7 +39,7 @@ const Form = () => {
 
   // Если в стейте есть ID, то выбран редим редактирования
 
-  const isAddMode = !currentContactId;
+  const isCreate = !currentContactId;
 
   const onSubmitHandler = (data: IPerson) => {
     const contact = {
@@ -47,10 +47,10 @@ const Form = () => {
       lastName: data.lastName,
       phone: data.phone,
       city: data.city,
-      id: isAddMode ? uuidv4().slice(0, 8) : contactToEdit?.id,
+      id: isCreate ? uuidv4().slice(0, 8) : contactToEdit?.id,
     };
 
-    isAddMode
+    isCreate
       ? createContact(contact)
           .unwrap()
           .then(() => {
@@ -75,7 +75,7 @@ const Form = () => {
     setValue,
   } = useForm<IPerson>();
 
-  if (!isAddMode && contactToEdit) {
+  if (!isCreate && contactToEdit) {
     setValue('firstName', contactToEdit.firstName);
     setValue('lastName', contactToEdit.lastName);
     setValue('phone', contactToEdit.phone);
@@ -122,7 +122,7 @@ const Form = () => {
           rules={{ required: 'You must enter your city' }}
           errors={errors}
         />
-        {isAddMode ? <Submit type="submit">Add</Submit> : <Submit type="submit">Edit</Submit>}
+        {isCreate ? <Submit type="submit">Add</Submit> : <Submit type="submit">Edit</Submit>}
       </StyledForm>
     </Container>
   );
