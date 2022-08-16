@@ -5,7 +5,7 @@ import CellEditButton from '../../components/Cells/CellEditButton';
 import { IPerson } from '../../types';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const tableColumns = (editContact: any, deleteContact: any) => {
+const tableColumns = (deleteContact: any) => {
   return [
     {
       Header: 'Contact list',
@@ -29,7 +29,7 @@ const tableColumns = (editContact: any, deleteContact: any) => {
         {
           Header: 'Edit',
           accessor: 'edit',
-          Cell: ({ row }: Cell<IPerson>) => CellEditButton(row, editContact),
+          Cell: ({ row }: Cell<IPerson>) => CellEditButton(row.original.id),
         },
         {
           Header: 'Delete',

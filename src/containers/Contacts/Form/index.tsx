@@ -1,11 +1,9 @@
 import { useForm } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import { v4 as uuidv4 } from 'uuid';
 
 import { IPerson } from '../../../types';
 import FormInput from '../../../components/Form/FormInput';
-import { setCurrentContact } from '../../../redux/slice';
 import {
   useCreateContactMutation,
   useGetContactsQuery,
@@ -16,30 +14,23 @@ import { Logo, Submit, StyledForm, Container } from './style';
 
 const VALIDATION_DIGITS_ONLY = new RegExp(/^\d+$/);
 
-type IState = {
-  slice: {
-    currentContact: string | null;
-  };
-};
-
 const Form = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
   const { data: contacts = [] } = useGetContactsQuery();
 
   const [createContact] = useCreateContactMutation();
   const [updateContact] = useUpdateContactMutation();
 
-  const currentContactId = useSelector((state: IState) => state.slice.currentContact);
+  const { id } = useParams();
 
   const contactToEdit = contacts.find((contact) => {
-    return contact.id === currentContactId;
+    return contact.id === id;
   });
 
   // Если в стейте есть ID, то выбран редим редактирования
 
-  const isCreate = !currentContactId;
+  const isCreate = !id;
 
   const onSubmitHandler = (data: IPerson) => {
     const contact = {
@@ -61,7 +52,6 @@ const Form = () => {
           .unwrap()
           .then(() => {
             alert('Contact edited!');
-            dispatch(setCurrentContact(null));
             navigate('/contacts');
           });
   };
