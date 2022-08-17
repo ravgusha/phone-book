@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import * as styles from '../../variables';
+import * as styles from '../../styleConstants';
 
 export const Container = styled.div`
   background-color: ${styles.MAIN_COLOR};
@@ -12,26 +12,11 @@ export const Container = styled.div`
 `;
 
 export const StyledLogo = styled.button`
+  padding-left: 15px;
   color: white;
+  background-color: transparent;
   font-size: 34px;
   align-self: flex-end;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  padding-left: 15px;
-
-  &:hover {
-    color: ${styles.SECONDARY_COLOR};
-    font-weight: bold;
-  }
-`;
-
-export const AddButton = styled.button`
-  color: white;
-  padding-right: 15px;
-  font-size: ${styles.FONTSIZE_1};
-  align-self: flex-end;
-  background-color: transparent;
   border: none;
   cursor: pointer;
 

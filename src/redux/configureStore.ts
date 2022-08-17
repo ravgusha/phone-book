@@ -1,7 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import slice from './slice';
+import { apiSlice } from './apiSlice';
 
-const store = configureStore({reducer: slice, devTools: process.env.NODE_ENV !== 'production'});
+const store = configureStore({
+  reducer: { [apiSlice.reducerPath]: apiSlice.reducer },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(apiSlice.middleware),
+  devTools: process.env.NODE_ENV !== 'production',
+});
 
 export default store;

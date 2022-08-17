@@ -3,6 +3,7 @@ import React from 'react';
 import { useTable, Column } from 'react-table';
 
 import { IPerson } from '../../types';
+import StyledTable from './style';
 
 interface Props {
   columns: Array<Column<object>>;
@@ -14,9 +15,9 @@ const Table: React.FC<Props> = ({ columns, data }) => {
     columns,
     data,
   });
-  
+
   return (
-    <table {...getTableProps()}>
+    <StyledTable {...getTableProps()}>
       <thead>
         {headerGroups.map((headerGroup) => (
           <tr {...headerGroup.getHeaderGroupProps()}>
@@ -38,7 +39,7 @@ const Table: React.FC<Props> = ({ columns, data }) => {
           );
         })}
       </tbody>
-    </table>
+    </StyledTable>
   );
 };
 
