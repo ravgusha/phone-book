@@ -18,7 +18,7 @@ const VALIDATION_DIGITS_ONLY = new RegExp(/^\d+$/);
 const Form = () => {
   const navigate = useNavigate();
 
-  const { data: contacts = [] } = useGetContactsQuery();
+  const { data: contacts = [], isLoading } = useGetContactsQuery();
 
   const [createContact] = useCreateContactMutation();
   const [updateContact] = useUpdateContactMutation();
@@ -74,7 +74,7 @@ const Form = () => {
   }
 
   return (
-    <ComponentWrapper>
+    <ComponentWrapper isLoading={isLoading}>
       <StyledForm onSubmit={handleSubmit(onSubmitHandler)}>
         <Logo src="../../../contact.svg" />
         <FormInput

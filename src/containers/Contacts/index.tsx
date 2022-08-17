@@ -2,7 +2,6 @@ import { useNavigate } from 'react-router';
 
 import { useDeleteContactMutation, useGetContactsQuery } from '../../redux/apiSlice';
 import Button from '../../components/Button';
-import Spinner from '../../components/Spinner';
 import Table from '../../components/Table';
 import tableColumns from './tableColumns';
 import ComponentWrapper from '../../components/ComponentWrapper';
@@ -16,12 +15,8 @@ const Contacts = () => {
 
   const columns = tableColumns(deleteContact);
 
-  if (isLoading) {
-    return <Spinner />;
-  }
-
   return (
-    <ComponentWrapper>
+    <ComponentWrapper isLoading={isLoading}>
       <Table columns={columns} data={contacts} />
       <Button
         onClick={() => {

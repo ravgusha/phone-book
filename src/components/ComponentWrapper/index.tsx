@@ -1,11 +1,13 @@
+import Spinner from '../Spinner';
 import StyledComponentWrapper from './style';
 
 interface IWrapper {
-    children: JSX.Element[] | JSX.Element
+  children: JSX.Element[] | JSX.Element;
+  isLoading?: boolean;
 }
 
-const ComponentWrapper = ({ children }: IWrapper) => {
-  return <StyledComponentWrapper>{children}</StyledComponentWrapper>;
+const ComponentWrapper = ({ isLoading, children }: IWrapper) => {
+  return isLoading ? <Spinner />: <StyledComponentWrapper>{children}</StyledComponentWrapper>;
 };
 
 export default ComponentWrapper;
