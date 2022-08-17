@@ -1,6 +1,27 @@
 {
   "contacts": [
     {
+      "firstName": "Alexander",
+      "lastName": "Hamilton",
+      "phone": "2012252255",
+      "city": "Brooklyn",
+      "id": "1"
+    },
+    {
+      "firstName": "George",
+      "lastName": "Washington",
+      "phone": "2012252244",
+      "city": "Washington",
+      "id": "2"
+    },
+    {
+      "firstName": "Angelica",
+      "lastName": "Schuyler",
+      "phone": "2012253344",
+      "city": "Chicago",
+      "id": "3"
+    },
+    {
       "firstName": "sdf",
       "lastName": "sdf",
       "phone": "6565465",
@@ -48,13 +69,6 @@
       "phone": "4564656",
       "city": "gfgfgф",
       "id": "4fc38181"
-    },
-    {
-      "firstName": "said",
-      "lastName": "said",
-      "phone": "6541645",
-      "city": "dfgdgd",
-      "id": "4205857c"
     }
   ]
 }

@@ -1,11 +1,6 @@
 import styled from 'styled-components';
 
-import ComponentWrapper from '../../../components/ComponentWrapper';
 import * as styles from '../../../styleConstants';
-
-export const FormComponentWrapper = styled(ComponentWrapper)`
-  height: 94vh;
-`;
 
 export const StyledForm = styled.form`
   width: 450px;

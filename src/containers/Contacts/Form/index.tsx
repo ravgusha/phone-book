@@ -4,13 +4,14 @@ import { v4 as uuidv4 } from 'uuid';
 
 import { IPerson } from '../../../types';
 import FormInput from '../../../components/Form/FormInput';
+import ComponentWrapper from '../../../components/ComponentWrapper';
 import {
   useCreateContactMutation,
   useGetContactsQuery,
   useUpdateContactMutation,
 } from '../../../redux/apiSlice';
 
-import { Logo, Submit, StyledForm, FormComponentWrapper } from './style';
+import { Logo, Submit, StyledForm } from './style';
 
 const VALIDATION_DIGITS_ONLY = new RegExp(/^\d+$/);
 
@@ -73,7 +74,7 @@ const Form = () => {
   }
 
   return (
-    <FormComponentWrapper>
+    <ComponentWrapper>
       <StyledForm onSubmit={handleSubmit(onSubmitHandler)}>
         <Logo src="../../../contact.svg" />
         <FormInput
@@ -114,7 +115,7 @@ const Form = () => {
         />
         {isCreate ? <Submit type="submit">Add</Submit> : <Submit type="submit">Edit</Submit>}
       </StyledForm>
-    </FormComponentWrapper>
+    </ComponentWrapper>
   );
 };
 

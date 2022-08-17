@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
 const StyledComponentWrapper = styled.div`
-  margin: 0 auto;
   width: fit-content;
+  height: calc(100vh - 53px);
+  margin: 0 auto;
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
+  justify-content: center;
 `;
 
 export default StyledComponentWrapper;
