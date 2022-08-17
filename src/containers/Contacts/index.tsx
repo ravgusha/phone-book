@@ -4,8 +4,8 @@ import { useDeleteContactMutation, useGetContactsQuery } from '../../redux/apiSl
 import Button from '../../components/Button';
 import Spinner from '../../components/Spinner';
 import Table from '../../components/Table';
-import Container from '../../components/Table/style';
 import tableColumns from './tableColumns';
+import ComponentWrapper from '../../components/ComponentWrapper';
 
 const Contacts = () => {
   const navigate = useNavigate();
@@ -21,7 +21,7 @@ const Contacts = () => {
   }
 
   return (
-    <Container>
+    <ComponentWrapper>
       <Table columns={columns} data={contacts} />
       <Button
         onClick={() => {
@@ -29,7 +29,7 @@ const Contacts = () => {
         }}
         label="+ create contact"
       />
-    </Container>
+    </ComponentWrapper>
   );
 };
 

@@ -1,11 +1,10 @@
 import styled from 'styled-components';
+
+import ComponentWrapper from '../../../components/ComponentWrapper';
 import * as styles from '../../../styleConstants';
 
-export const Container = styled.div`
+export const FormComponentWrapper = styled(ComponentWrapper)`
   height: 94vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 `;
 
 export const StyledForm = styled.form`

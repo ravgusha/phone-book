@@ -10,7 +10,7 @@ import {
   useUpdateContactMutation,
 } from '../../../redux/apiSlice';
 
-import { Logo, Submit, StyledForm, Container } from './style';
+import { Logo, Submit, StyledForm, FormComponentWrapper } from './style';
 
 const VALIDATION_DIGITS_ONLY = new RegExp(/^\d+$/);
 
@@ -73,7 +73,7 @@ const Form = () => {
   }
 
   return (
-    <Container>
+    <FormComponentWrapper>
       <StyledForm onSubmit={handleSubmit(onSubmitHandler)}>
         <Logo src="../../../contact.svg" />
         <FormInput
@@ -114,7 +114,7 @@ const Form = () => {
         />
         {isCreate ? <Submit type="submit">Add</Submit> : <Submit type="submit">Edit</Submit>}
       </StyledForm>
-    </Container>
+    </FormComponentWrapper>
   );
 };
 

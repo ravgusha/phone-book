@@ -2,45 +2,38 @@ import styled from 'styled-components';
 
 import * as styles from '../../styleConstants';
 
-const Container = styled.div`
-  margin: 0 auto;
-  width: fit-content;
-  display: flex;
-  flex-direction: column;
+const StyledTable = styled.table`
+  margin-bottom: 7px;
+  font-size: ${styles.FONTSIZE_1};
+  border: none;
+  border-collapse: collapse;
+  caption-side: top;
+  caption-side: bottom;
 
-  table {
-    margin-bottom: 7px;
-    font-size: ${styles.FONTSIZE_1};
-    border: none;
-    border-collapse: collapse;
-    caption-side: top;
-    caption-side: bottom;
-
-    tbody tr {
-      :nth-of-type(odd) {
-        background-color: #efefef;
-      }
-      :hover {
-        background-color: ${styles.MAIN_COLOR};
-      }
+  tbody tr {
+    :nth-of-type(odd) {
+      background-color: #efefef;
     }
-
-    thead > tr:nth-of-type(2) {
-      background-color: #c2c2c2;
+    :hover {
+      background-color: ${styles.MAIN_COLOR};
     }
+  }
 
-    tr:not(:first-child) {
-      :hover {
-        background-color: ${styles.MAIN_COLOR};
-      }
-    }
+  thead > tr:nth-of-type(2) {
+    background-color: #c2c2c2;
+  }
 
-    th,
-    td {
-      margin: 0;
-      padding: 0.5rem;
+  tr:not(:first-child) {
+    :hover {
+      background-color: ${styles.MAIN_COLOR};
     }
+  }
+
+  th,
+  td {
+    margin: 0;
+    padding: 0.5rem;
   }
 `;
 
-export default Container;
+export default StyledTable;
