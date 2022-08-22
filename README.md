@@ -14,7 +14,7 @@ Phone Book - Contact Management App in React.
 - Delete a contact
 
 ## I Used: 
-- react-hook-form for add and edit contact form 
-- react-table for displaying contact list
-- styled-components for styling
-- RTK Query for data fetching
+- **react-hook-form** for add and edit contact form 
+- **react-table** for displaying contact list
+- **styled-components** for styling
+- **RTK Query** for data fetching
