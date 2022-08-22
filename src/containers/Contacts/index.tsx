@@ -4,8 +4,6 @@ import tableColumns from './tableColumns';
 import ComponentWrapper from '../../components/ComponentWrapper';
 import Link from '../../components/Link';
 
-
-
 const Contacts = () => {
 
   const { data: contacts = [], isLoading } = useGetContactsQuery();

@@ -1,6 +1,8 @@
 import { useForm } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router';
 import { v4 as uuidv4 } from 'uuid';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { IPerson } from '../../../types';
 import FormInput from '../../../components/Form/FormInput';
@@ -46,13 +48,13 @@ const Form = () => {
       ? createContact(contact)
           .unwrap()
           .then(() => {
-            alert('Contact created!');
+            toast.success('Contact created!');
             navigate('/contacts');
           })
       : updateContact(contact)
           .unwrap()
           .then(() => {
-            alert('Contact edited!');
+            toast.success('Contact edited!');
             navigate('/contacts');
           });
   };
