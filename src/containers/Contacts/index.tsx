@@ -22,7 +22,17 @@ const Contacts = () => {
 
   return (
     <ComponentWrapper isLoading={isLoading}>
-      <Table columns={columns} data={contacts} />
+      {contacts.length > 0 ? (
+        <Table columns={columns} data={contacts} />
+      ) : (
+        <>
+          <img style={{paddingLeft: '14px'}} src="../../../empty.png" />
+          <div style={{padding: '20px 0'}}>
+            <h2>No contacts to display</h2>
+            <p>Would you like to add one now?</p>
+          </div>
+        </>
+      )}
       <Link to="/contacts/add" label="+ create contact" />
     </ComponentWrapper>
   );
