@@ -51,12 +51,14 @@ const Form = () => {
             toast.success('Contact created!');
             navigate('/contacts');
           })
+          .catch((error) => toast.error(error.error))
       : updateContact(contact)
           .unwrap()
           .then(() => {
             toast.success('Contact edited!');
             navigate('/contacts');
-          });
+          })
+          .catch((error) => toast.error(error.error));
   };
 
   // Если режим редактирования, то запонить форму старыми значениями
