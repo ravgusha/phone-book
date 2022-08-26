@@ -14,6 +14,8 @@ import {
 } from '../../../redux/apiSlice';
 
 import { Logo, Submit, StyledForm } from './style';
+import { setNotification } from '../../../redux/slice';
+import { useDispatch } from 'react-redux';
 
 const VALIDATION_DIGITS_ONLY = new RegExp(/^\d+$/);
 
@@ -34,7 +36,8 @@ const Form = () => {
   // Если в стейте есть ID, то выбран редим редактирования
 
   const isCreate = !id;
-
+  const dispatch = useDispatch();
+  
   const onSubmitHandler = (data: IPerson) => {
     const contact = {
       firstName: data.firstName,
@@ -55,7 +58,7 @@ const Form = () => {
       : updateContact(contact)
           .unwrap()
           .then(() => {
-            toast.success('Contact edited!');
+            dispatch(setNotification({ message: 'edited! 😩', type: 'success' }));
             navigate('/contacts');
           })
           .catch((error) => toast.error(error.error));

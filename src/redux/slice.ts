@@ -10,7 +10,7 @@ const initialState: IState = {
 };
 
 const slice = createSlice({
-  name: 'contacts',
+  name: 'notifications',
   initialState,
   reducers: {
     setNotification: (state, action) => {
