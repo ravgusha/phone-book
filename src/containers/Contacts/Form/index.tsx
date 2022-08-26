@@ -12,6 +12,7 @@ import {
   useGetContactsQuery,
   useUpdateContactMutation,
 } from '../../../redux/apiSlice';
+import logoImage from '../../../assets/contact.svg';
 
 import { Logo, Submit, StyledForm } from './style';
 import { setNotification } from '../../../redux/slice';
@@ -37,7 +38,7 @@ const Form = () => {
 
   const isCreate = !id;
   const dispatch = useDispatch();
-  
+
   const onSubmitHandler = (data: IPerson) => {
     const contact = {
       firstName: data.firstName,
@@ -83,7 +84,7 @@ const Form = () => {
   return (
     <ComponentWrapper isLoading={isLoading}>
       <StyledForm onSubmit={handleSubmit(onSubmitHandler)}>
-        <Logo src="../../../contact.svg" />
+        <Logo src={logoImage} />
         <FormInput
           name={'firstName'}
           label={'First name'}
