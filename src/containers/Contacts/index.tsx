@@ -1,3 +1,5 @@
+import { Fragment } from 'react';
+import { useDispatch } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 
 import { useDeleteContactMutation, useGetContactsQuery } from '../../redux/apiSlice';
@@ -5,10 +7,8 @@ import Table from '../../components/Table';
 import getTableColumns from './tableColumns';
 import ComponentWrapper from '../../components/ComponentWrapper';
 import Link from '../../components/Link';
-import { useDispatch } from 'react-redux';
 import { setNotification } from '../../redux/slice';
 import CoverTable from '../../components/CoverTable';
-import { Fragment } from 'react';
 
 const Contacts = () => {
   const dispatch = useDispatch();

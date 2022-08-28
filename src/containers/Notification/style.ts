@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import * as styles from '../../styleConstants';
+import * as styles from '../../styles/styleConstants';
 
 export const NotificationContainer = styled.div`
   font-size: 14px;

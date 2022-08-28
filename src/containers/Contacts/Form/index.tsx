@@ -1,6 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router';
 import { v4 as uuidv4 } from 'uuid';
+import { useDispatch } from 'react-redux';
 
 import { IPerson } from '../../../types';
 import FormInput from '../../../components/Form/FormInput';
@@ -10,30 +11,25 @@ import {
   useGetContactsQuery,
   useUpdateContactMutation,
 } from '../../../redux/apiSlice';
-import logoImage from '../../../assets/contact.svg';
-
 import { Logo, StyledForm } from './style';
 import { setNotification } from '../../../redux/slice';
-import { useDispatch } from 'react-redux';
 import Button from '../../../components/Button';
 import { VALIDATION_DIGITS_ONLY } from '../contants';
+import logoImage from '../../../assets/contact.svg';
 
 const Form = () => {
   const navigate = useNavigate();
+  const { id } = useParams();
 
   const { data: contacts = [], isLoading } = useGetContactsQuery();
-
   const [createContact] = useCreateContactMutation();
   const [updateContact] = useUpdateContactMutation();
-
-  const { id } = useParams();
 
   const contactToEdit = contacts.find((contact) => {
     return contact.id === id;
   });
 
   // Если в стейте есть ID, то выбран редим редактирования
-
   const isCreate = !id;
   const dispatch = useDispatch();
 
@@ -68,8 +64,8 @@ const Form = () => {
             dispatch(setNotification({ message: error.error, type: 'error', id: uuidv4() }));
           });
   };
+  
   // Если режим редактирования, то запонить форму старыми значениями
-
   const {
     register,
     formState: { errors },

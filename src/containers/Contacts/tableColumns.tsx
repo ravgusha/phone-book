@@ -4,7 +4,6 @@ import CellDeleteButton from '../../components/Cells/CellDeleteButton';
 import CellEditButton from '../../components/Cells/CellEditButton';
 import { IPerson } from '../../types';
 
-
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const getTableColumns = (deleteContact: any) => {
   return [

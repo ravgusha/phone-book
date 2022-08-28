@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import * as styles from '../../../styles/styleConstants';
+
 export const StyledForm = styled.form`
   width: 450px;
   padding: 25px;
@@ -16,6 +18,6 @@ export const StyledForm = styled.form`
 export const Logo = styled.img`
   width: 55px;
   height: 55px;
-  color: #639cd9;
+  color: ${styles.SECONDARY_COLOR};
   align-self: center;
 `;
