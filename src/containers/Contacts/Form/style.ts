@@ -7,6 +7,10 @@ export const StyledForm = styled.form`
   background-color: #fff;
   flex-direction: column;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+
+  div {
+    padding: 15px 0 0 0;
+  }
 `;
 
 export const Logo = styled.img`

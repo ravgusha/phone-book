@@ -12,12 +12,11 @@ import {
 } from '../../../redux/apiSlice';
 import logoImage from '../../../assets/contact.svg';
 
-import { Logo, Submit, StyledForm } from './style';
+import { Logo, StyledForm } from './style';
 import { setNotification } from '../../../redux/slice';
 import { useDispatch } from 'react-redux';
 import Button from '../../../components/Button';
-
-const VALIDATION_DIGITS_ONLY = new RegExp(/^\d+$/);
+import { VALIDATION_DIGITS_ONLY } from '../contants';
 
 const Form = () => {
   const navigate = useNavigate();
@@ -89,44 +88,44 @@ const Form = () => {
     <ComponentWrapper isLoading={isLoading}>
       <StyledForm onSubmit={handleSubmit(onSubmitHandler)}>
         <Logo src={logoImage} />
-        
-        <FormInput
-          name={'firstName'}
-          label={'First name'}
-          register={register}
-          rules={{ required: 'You must enter your first name' }}
-          errors={errors}
-        />
-        <FormInput
-          name={'lastName'}
-          label={'Last name'}
-          register={register}
-          rules={{ required: 'You must enter your last name' }}
-          errors={errors}
-        />
-        <FormInput
-          name={'phone'}
-          label={'Phone'}
-          register={register}
-          rules={{
-            required: 'You must enter your phone',
-            minLength: { value: 6, message: 'Phone length must be between 6 and 11' },
-            maxLength: { value: 11, message: 'Phone length must be between 6 and 11' },
-            pattern: {
-              value: VALIDATION_DIGITS_ONLY,
-              message: 'Phone number must contain digits only',
-            },
-          }}
-          errors={errors}
-        />
-        <FormInput
-          name={'city'}
-          label={'City'}
-          register={register}
-          rules={{ required: 'You must enter your city' }}
-          errors={errors}
-        />
-        <Button label="← go back" onClick={()=> navigate('/contacts')}/>
+        <div>
+          <FormInput
+            name={'firstName'}
+            label={'First name'}
+            register={register}
+            rules={{ required: 'You must enter your first name' }}
+            errors={errors}
+          />
+          <FormInput
+            name={'lastName'}
+            label={'Last name'}
+            register={register}
+            rules={{ required: 'You must enter your last name' }}
+            errors={errors}
+          />
+          <FormInput
+            name={'phone'}
+            label={'Phone'}
+            register={register}
+            rules={{
+              required: 'You must enter your phone',
+              minLength: { value: 6, message: 'Phone length must be between 6 and 11' },
+              maxLength: { value: 11, message: 'Phone length must be between 6 and 11' },
+              pattern: {
+                value: VALIDATION_DIGITS_ONLY,
+                message: 'Phone number must contain digits only',
+              },
+            }}
+            errors={errors}
+          />
+          <FormInput
+            name={'city'}
+            label={'City'}
+            register={register}
+            rules={{ required: 'You must enter your city' }}
+            errors={errors}
+          />
+        </div>
         {isCreate ? <Button label="add" type="submit" /> : <Button label="edit" type="submit" />}
       </StyledForm>
     </ComponentWrapper>

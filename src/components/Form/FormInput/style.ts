@@ -7,6 +7,7 @@ export const StyledLabel = styled.label`
 export const StyledInput = styled.input`
   width: 100%;
   padding: 15px;
+  margin-bottom: 15px;
   box-sizing: border-box;
   background: #f2f2f2;
   font-size: 14px;
