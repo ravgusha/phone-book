@@ -1,11 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { INotification } from '../containers/Notification';
 
-export interface IState {
+export interface ISlice {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  notifications: any;
+  notifications: INotification[] | any[];
 }
 
-const initialState: IState = {
+const initialState: ISlice = {
   notifications: [],
 };
 
@@ -17,7 +18,16 @@ const slice = createSlice({
       state.notifications.push({
         message: action.payload.message,
         type: action.payload.type,
+        id: action.payload.id,
       });
+    },
+    deleteNotification: (state, action) => {
+      const index = state.notifications.findIndex(
+        (notification) => notification.id === action.payload
+      );
+      if (index !== -1) {
+        state.notifications.splice(index, 1);
+      }
     },
   },
 });
@@ -25,4 +35,4 @@ const slice = createSlice({
 const { actions, reducer } = slice;
 
 export default reducer;
-export const { setNotification } = actions;
+export const { setNotification, deleteNotification } = actions;

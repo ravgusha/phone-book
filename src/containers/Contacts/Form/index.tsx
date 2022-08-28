@@ -1,8 +1,6 @@
 import { useForm } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router';
 import { v4 as uuidv4 } from 'uuid';
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 import { IPerson } from '../../../types';
 import FormInput from '../../../components/Form/FormInput';
@@ -52,19 +50,24 @@ const Form = () => {
       ? createContact(contact)
           .unwrap()
           .then(() => {
-            toast.success('Contact created!');
+            dispatch(
+              setNotification({ message: 'Contact created', type: 'success', id: uuidv4() })
+            );
             navigate('/contacts');
           })
-          .catch((error) => toast.error(error.error))
+          .catch((error) => {
+            dispatch(setNotification({ message: error.error, type: 'error', id: uuidv4() }));
+          })
       : updateContact(contact)
           .unwrap()
           .then(() => {
-            dispatch(setNotification({ message: 'edited! 😩', type: 'success' }));
+            dispatch(setNotification({ message: 'Contact edited', type: 'success', id: uuidv4() }));
             navigate('/contacts');
           })
-          .catch((error) => toast.error(error.error));
+          .catch((error) => {
+            dispatch(setNotification({ message: error.error, type: 'error', id: uuidv4() }));
+          });
   };
-
   // Если режим редактирования, то запонить форму старыми значениями
 
   const {
