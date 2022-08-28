@@ -15,6 +15,7 @@ import logoImage from '../../../assets/contact.svg';
 import { Logo, Submit, StyledForm } from './style';
 import { setNotification } from '../../../redux/slice';
 import { useDispatch } from 'react-redux';
+import Button from '../../../components/Button';
 
 const VALIDATION_DIGITS_ONLY = new RegExp(/^\d+$/);
 
@@ -88,6 +89,7 @@ const Form = () => {
     <ComponentWrapper isLoading={isLoading}>
       <StyledForm onSubmit={handleSubmit(onSubmitHandler)}>
         <Logo src={logoImage} />
+        
         <FormInput
           name={'firstName'}
           label={'First name'}
@@ -124,7 +126,8 @@ const Form = () => {
           rules={{ required: 'You must enter your city' }}
           errors={errors}
         />
-        {isCreate ? <Submit type="submit">Add</Submit> : <Submit type="submit">Edit</Submit>}
+        <Button label="← go back" onClick={()=> navigate('/contacts')}/>
+        {isCreate ? <Button label="add" type="submit" /> : <Button label="edit" type="submit" />}
       </StyledForm>
     </ComponentWrapper>
   );

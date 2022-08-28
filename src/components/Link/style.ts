@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const StyledLink = styled(Link)`
-  color: black;
+  color: #fff;
   padding: 4px;
   background-color: #9ed3ff;
   font-size: 24px;
