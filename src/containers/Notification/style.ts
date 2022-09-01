@@ -3,12 +3,14 @@ import styled from 'styled-components';
 import * as styles from '../../styles/styleConstants';
 
 export const NotificationContainer = styled.div`
+  width: 1280px;
   font-size: 14px;
   position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 10;
-  bottom: 1rem;
-  right: 1rem;
-  animation: toast-in-right 1s;
+  top: 4rem;
+  transition: all 10s ease-out;
 
   div {
     border-radius: 4px;
@@ -17,7 +19,6 @@ export const NotificationContainer = styled.div`
     opacity: 0.9;
     transition: 0.3s ease;
     height: 65px;
-    width: 365px;
     color: #fff;
     padding: 20px 15px 10px 10px;
     background-color: blue;

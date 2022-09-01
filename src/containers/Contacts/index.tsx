@@ -1,6 +1,6 @@
-import { Fragment } from 'react';
 import { useDispatch } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
+import { ThemeProvider } from 'styled-components';
 
 import { useDeleteContactMutation, useGetContactsQuery } from '../../redux/apiSlice';
 import Table from '../../components/Table';
@@ -9,6 +9,12 @@ import ComponentWrapper from '../../components/ComponentWrapper';
 import Link from '../../components/Link';
 import { setNotification } from '../../redux/slice';
 import CoverTable from '../../components/CoverTable';
+
+const theme = {
+  jc: 'start',
+  mg: '86px auto',
+  as: 'end',
+};
 
 const Contacts = () => {
   const dispatch = useDispatch();
@@ -28,19 +34,17 @@ const Contacts = () => {
 
   const columns = getTableColumns(onDeleteHandle);
 
-  return (
+  return contacts.length > 0 ? (
+    <ThemeProvider theme={theme}>
+      <ComponentWrapper isLoading={isLoading}>
+        <Link to="/contacts/add" label="+ create contact" />
+        <Table columns={columns} data={contacts} />
+      </ComponentWrapper>
+    </ThemeProvider>
+  ) : (
     <ComponentWrapper isLoading={isLoading}>
-      {contacts.length > 0 ? (
-        <Fragment>
-          <Link to="/contacts/add" label="+ create contact" />
-          <Table columns={columns} data={contacts} />
-        </Fragment>
-      ) : (
-        <Fragment>
-          <CoverTable />
-          <Link to="/contacts/add" label="+ create contact" />
-        </Fragment>
-      )}
+      <CoverTable />
+      <Link to="/contacts/add" label="+ create contact" />
     </ComponentWrapper>
   );
 };

@@ -8,7 +8,7 @@ export const StyledButton = styled.button`
   border: none;
   border-radius: 6px;
   background-color: ${styles.MAIN_COLOR};
-      margin: 8px 0;
+  margin: 8px 0;
 
   &:hover {
     box-shadow: 0 0 11px rgba(33, 33, 33, 0.2);
