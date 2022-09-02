@@ -1,10 +1,26 @@
 # Phone Book
-<a href="https://snyk.io/test/github/ravgusha/phone-book/develop"><img src="https://snyk.io/test/github/ravgusha/phone-book/develop/badge.svg" /></a>
 <a href="https://codeclimate.com/github/ravgusha/phone-book/maintainability"><img src="https://api.codeclimate.com/v1/badges/aafc5818f0ac3cd5241e/maintainability" /></a>
 
 Phone Book - Contact Management App in React.
 ## Deploy: https://ravgusha-phone-book.netlify.app/
-![image](https://user-images.githubusercontent.com/62184992/186002950-71f04b72-d976-430e-af70-3c79afb3fcdf.png)
+![image](https://user-images.githubusercontent.com/62184992/188235982-5a0d32d5-5c97-4aff-ab5c-86e36239d9c6.png)
+
+## Available Scripts
+Installing modules from npm:
+### 
+```
+npm install
+```
+### 
+Runs the app in the development mode:
+```
+npm start
+```
+### 
+Builds the app for production to the `build` folder:
+```
+npm run build
+```
 
 ## App Functionality: 
 
