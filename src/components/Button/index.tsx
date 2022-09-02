@@ -2,6 +2,7 @@ import { StyledButton } from './style';
 
 interface IButton {
   onClick?: React.MouseEventHandler;
+  type?: string;
   label: string;
 }
 

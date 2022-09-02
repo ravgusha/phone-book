@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 
-import * as styles from '../../styleConstants';
+import * as styles from '../../styles/styleConstants';
 
 const StyledTable = styled.table`
-  margin-bottom: 7px;
+  width: 1280px;
+  margin: 7px 0;
   font-size: ${styles.FONTSIZE_1};
   border: none;
   border-collapse: collapse;
@@ -17,6 +18,10 @@ const StyledTable = styled.table`
     :hover {
       background-color: ${styles.MAIN_COLOR};
     }
+  }
+
+  thead > tr:first-child {
+    display: none;
   }
 
   thead > tr:nth-of-type(2) {
@@ -33,6 +38,7 @@ const StyledTable = styled.table`
   td {
     margin: 0;
     padding: 0.5rem;
+    text-align: center;
   }
 `;
 

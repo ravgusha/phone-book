@@ -9,4 +9,5 @@ const Link = ({ to, label }: ILink) => {
   return <StyledLink to={to}>{label}</StyledLink>;
 };
 
+
 export default Link;
