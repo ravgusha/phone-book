@@ -29,7 +29,7 @@ const Form = () => {
     return contact.id === id;
   });
 
-  // Если в стейте есть ID, то выбран редим редактирования
+  // Если в стейте есть ID, то выбран режим редактирования
   const isCreate = !id;
   const dispatch = useDispatch();
 
@@ -41,6 +41,11 @@ const Form = () => {
       city: data.city,
       id: isCreate ? uuidv4().slice(0, 8) : contactToEdit?.id,
     };
+
+    // Если нет изменений, вернуть
+    if (JSON.stringify(contactToEdit) === JSON.stringify(contact)) {
+      return;
+    }
 
     isCreate
       ? createContact(contact)
@@ -64,7 +69,7 @@ const Form = () => {
             dispatch(setNotification({ message: error.error, type: 'error', id: uuidv4() }));
           });
   };
-  
+
   // Если режим редактирования, то запонить форму старыми значениями
   const {
     register,
