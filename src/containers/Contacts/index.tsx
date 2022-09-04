@@ -8,7 +8,7 @@ import getTableColumns from './tableColumns';
 import ComponentWrapper from '../../components/ComponentWrapper';
 import Link from '../../components/Link';
 import { setNotification } from '../../redux/slice';
-import CoverTable from '../../components/CoverTable';
+import CoverTable from '../../components/Table/CoverTable';
 
 const theme = {
   jc: 'start',
