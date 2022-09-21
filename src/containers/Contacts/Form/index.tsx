@@ -1,4 +1,4 @@
-import { useForm } from 'react-hook-form';
+import { FieldValues, useForm } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router';
 import { v4 as uuidv4 } from 'uuid';
 import { useDispatch } from 'react-redux';
@@ -25,7 +25,7 @@ const Form = () => {
   const [createContact] = useCreateContactMutation();
   const [updateContact] = useUpdateContactMutation();
 
-  const contactToEdit = contacts.find((contact) => {
+  const contactToEdit = contacts.find((contact: IPerson) => {
     return contact.id === id;
   });
 
@@ -33,7 +33,7 @@ const Form = () => {
   const isCreate = !id;
   const dispatch = useDispatch();
 
-  const onSubmitHandler = (data: IPerson) => {
+  const onSubmitHandler = (data: FieldValues) => {
     const contact = {
       firstName: data.firstName,
       lastName: data.lastName,
@@ -76,7 +76,7 @@ const Form = () => {
     formState: { errors },
     handleSubmit,
     setValue,
-  } = useForm<IPerson>();
+  } = useForm<FieldValues>();
 
   if (!isCreate && contactToEdit) {
     setValue('firstName', contactToEdit.firstName);

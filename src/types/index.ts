@@ -5,3 +5,9 @@ export type IPerson = {
   city: string;
   id: string;
 };
+
+export type IAuth = {
+  login: string;
+  password: string;
+  name?: string;
+}

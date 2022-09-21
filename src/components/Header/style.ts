@@ -25,3 +25,20 @@ export const StyledLogo = styled.button`
     font-weight: bold;
   }
 `;
+
+export const HeaderLink = styled.div`
+  padding: 0 6px;
+  margin-right: 10px;
+  font-size: 24px;
+  color: white;
+  border: 1px solid white;
+  border-radius: 6px;
+  align-self: center;
+  cursor: pointer;
+
+  &:hover {
+    color: ${styles.SECONDARY_COLOR};
+    font-weight: bold;
+    border: 1px solid ${styles.SECONDARY_COLOR};
+  }
+`;
