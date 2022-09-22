@@ -7,6 +7,8 @@ import { StyledForm, Logo, StyledLink } from './style';
 import lockImage from '../../assets/lock.svg';
 import { useGetContactsQuery } from '../../redux/apiSlice';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { Fragment } from 'react';
+import { VALIDATION_DIGITS_AND_LETTERS_ONLY } from './constants';
 
 const Authorization = () => {
   const navigate = useNavigate();
@@ -44,42 +46,51 @@ const Authorization = () => {
       <StyledForm onSubmit={handleSubmit(onSubmitHandler)}>
         <Logo src={lockImage} />
         <div>
-          {isSignupMode ? (
-            <FormInput
-              name={'name'}
-              label={'Name'}
-              register={register}
-              rules={{ required: 'You must enter your name' }}
-              errors={errors}
-            />
-          ) : null}
           <FormInput
-            name={'login'}
-            label={'Login'}
+            name={'username'}
+            label={'Username'}
             register={register}
-            rules={{ required: 'You must enter your login' }}
+            rules={{
+              required: 'You must enter your username',
+              minLength: { value: 4, message: 'Username length must be between 4 and 15' },
+              maxLength: { value: 15, message: 'Username length must be between 4 and 15' },
+              pattern: {
+                value: VALIDATION_DIGITS_AND_LETTERS_ONLY,
+                message: 'Username must contain digits ans letters only',
+              },
+            }}
             errors={errors}
           />
           <FormInput
             name={'password'}
             label={'Password'}
             register={register}
-            rules={{ required: 'You must enter your password' }}
+            rules={{
+              required: 'You must enter your password',
+              minLength: { value: 6, message: 'Password length must be between 6 and 15' },
+              maxLength: { value: 15, message: 'Password length must be between 6 and 15' },
+              pattern: {
+                value: VALIDATION_DIGITS_AND_LETTERS_ONLY,
+                message: 'Password must contain digits ans letters only',
+              },
+            }}
             errors={errors}
           />
         </div>
         {isSignupMode ? (
           <Button label="sign up" type="submit" />
         ) : (
-          <Button label="sign in" type="submit" />
+          <Fragment>
+            <Button label="sign in" type="submit" />
+            <StyledLink
+              onClick={() => {
+                navigate('/signup');
+              }}
+            >
+              Don&apos;t have an account? Sign up
+            </StyledLink>
+          </Fragment>
         )}
-        <StyledLink
-          onClick={() => {
-            navigate('/signup');
-          }}
-        >
-          Don&apos;t have an account? Sign up
-        </StyledLink>
       </StyledForm>
     </ComponentWrapper>
   );

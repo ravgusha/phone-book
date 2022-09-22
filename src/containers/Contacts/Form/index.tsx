@@ -14,7 +14,7 @@ import {
 import { Logo, StyledForm } from './style';
 import { setNotification } from '../../../redux/slice';
 import Button from '../../../components/Button';
-import { VALIDATION_DIGITS_ONLY } from '../contants';
+import { VALIDATION_DIGITS_ONLY } from '../constants';
 import logoImage from '../../../assets/contact.svg';
 
 const Form = () => {
