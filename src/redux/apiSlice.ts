@@ -33,6 +33,15 @@ export const apiSlice = createApi({
       }),
       invalidatesTags: ['Contacts'],
     }),
+    createUser: builder.mutation({
+      query: (user) => ({
+        url: '/users',
+        method: 'POST',
+        body: user,
+      }),
+      invalidatesTags: ['Contacts'],
+    }),
+    
   }),
 });
 
@@ -41,4 +50,5 @@ export const {
   useDeleteContactMutation,
   useCreateContactMutation,
   useUpdateContactMutation,
+  useCreateUserMutation,
 } = apiSlice;
