@@ -10,7 +10,7 @@ import { StyledForm, Logo, StyledLink } from './style';
 import lockImage from '../../assets/lock.svg';
 import { useCreateUserMutation } from '../../redux/apiSlice';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { VALIDATION_DIGITS_AND_LETTERS_ONLY } from './constants';
+import { VALIDATION_DIGITS_AND_LETTERS_ONLY, VALIDATION_EMAIL, VALIDATION_LETTERS_ONLY } from './constants';
 import { setNotification } from '../../redux/slice';
 
 const Authorization = () => {
@@ -35,7 +35,7 @@ const Authorization = () => {
   const onSubmitHandler = (data: FieldValues) => {
     console.log(data);
     const user = {
-      username: data.username,
+      email: data.email,
       password: data.password,
     };
 
@@ -57,17 +57,33 @@ const Authorization = () => {
       <StyledForm onSubmit={handleSubmit(onSubmitHandler)}>
         <Logo src={lockImage} />
         <div>
+        {isSignupMode ? (
           <FormInput
-            name={'username'}
-            label={'Username'}
+          name={'name'}
+          label={'Name'}
+          register={register}
+          rules={{
+            required: 'You must enter your name',
+            minLength: { value: 4, message: 'Name length must be between 4 and 15' },
+            maxLength: { value: 15, message: 'Name length must be between 4 and 15' },
+            pattern: {
+              value: VALIDATION_LETTERS_ONLY,
+              message: 'Name must contain english letters only',
+            },
+          }}
+          errors={errors}
+        />
+        ) : null}
+          <FormInput
+            name={'email'}
+            label={'Email'}
             register={register}
             rules={{
-              required: 'You must enter your username',
-              minLength: { value: 4, message: 'Username length must be between 4 and 15' },
-              maxLength: { value: 15, message: 'Username length must be between 4 and 15' },
+              required: 'You must enter your email',
+              minLength: { value: 6, message: 'Email length must be greater than 6' },
               pattern: {
-                value: VALIDATION_DIGITS_AND_LETTERS_ONLY,
-                message: 'Username must contain digits ans english letters only',
+                value: VALIDATION_EMAIL,
+                message: 'Please enter valid email',
               },
             }}
             errors={errors}

@@ -25,4 +25,9 @@ export const Logo = styled.img`
 export const StyledLink = styled.a`
   align-self: center;
   color: grey;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
 `;
