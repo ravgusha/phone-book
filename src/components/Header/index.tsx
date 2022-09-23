@@ -10,10 +10,10 @@ const Header = () => {
       <Logo />
       <HeaderLink
         onClick={() => {
-          navigate('/signin');
+          navigate('/login');
         }}
       >
-        Sign in
+        Login
       </HeaderLink>
     </Container>
   );

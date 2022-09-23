@@ -8,9 +8,13 @@ import ComponentWrapper from '../../components/ComponentWrapper';
 import FormInput from '../../components/Form/FormInput';
 import { StyledForm, Logo, StyledLink } from './style';
 import lockImage from '../../assets/lock.svg';
-import { useCreateUserMutation } from '../../redux/apiSlice';
+import { useCreateUserMutation, useLoginUserMutation } from '../../redux/apiSlice';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { VALIDATION_DIGITS_AND_LETTERS_ONLY, VALIDATION_EMAIL, VALIDATION_LETTERS_ONLY } from './constants';
+import {
+  VALIDATION_DIGITS_AND_LETTERS_ONLY,
+  VALIDATION_EMAIL,
+  VALIDATION_LETTERS_ONLY,
+} from './constants';
 import { setNotification } from '../../redux/slice';
 
 const Authorization = () => {
@@ -31,6 +35,7 @@ const Authorization = () => {
   } = useForm<FieldValues>();
 
   const [createUser] = useCreateUserMutation();
+  const [loginUser] = useLoginUserMutation();
 
   const onSubmitHandler = (data: FieldValues) => {
     console.log(data);
@@ -49,7 +54,15 @@ const Authorization = () => {
           .catch((error) => {
             dispatch(setNotification({ message: error.error, type: 'error', id: uuidv4() }));
           })
-      : null;
+      : loginUser(user)
+          .unwrap()
+          .then(() => {
+            dispatch(setNotification({ message: 'You are successfully logged in', type: 'success', id: uuidv4() }));
+            // navigate('/contacts');
+          })
+          .catch((error) => {
+            dispatch(setNotification({ message: error.error, type: 'error', id: uuidv4() }));
+          });
   };
   return (
     // isLoading={isLoading} добавить
@@ -57,23 +70,23 @@ const Authorization = () => {
       <StyledForm onSubmit={handleSubmit(onSubmitHandler)}>
         <Logo src={lockImage} />
         <div>
-        {isSignupMode ? (
-          <FormInput
-          name={'name'}
-          label={'Name'}
-          register={register}
-          rules={{
-            required: 'You must enter your name',
-            minLength: { value: 4, message: 'Name length must be between 4 and 15' },
-            maxLength: { value: 15, message: 'Name length must be between 4 and 15' },
-            pattern: {
-              value: VALIDATION_LETTERS_ONLY,
-              message: 'Name must contain english letters only',
-            },
-          }}
-          errors={errors}
-        />
-        ) : null}
+          {isSignupMode ? (
+            <FormInput
+              name={'name'}
+              label={'Name'}
+              register={register}
+              rules={{
+                required: 'You must enter your name',
+                minLength: { value: 4, message: 'Name length must be between 4 and 15' },
+                maxLength: { value: 15, message: 'Name length must be between 4 and 15' },
+                pattern: {
+                  value: VALIDATION_LETTERS_ONLY,
+                  message: 'Name must contain english letters only',
+                },
+              }}
+              errors={errors}
+            />
+          ) : null}
           <FormInput
             name={'email'}
             label={'Email'}
@@ -108,7 +121,7 @@ const Authorization = () => {
           <Button label="sign up" type="submit" />
         ) : (
           <Fragment>
-            <Button label="sign in" type="submit" />
+            <Button label="login" type="submit" />
             <StyledLink
               onClick={() => {
                 navigate('/signup');

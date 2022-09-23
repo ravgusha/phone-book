@@ -4,7 +4,7 @@ import Form from '../containers/Contacts/Form';
 
 const routes = [
   {
-    path: '/signin',
+    path: '/login',
     component: Authorization,
   },
   {

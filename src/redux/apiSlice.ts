@@ -4,7 +4,7 @@ import { IPerson } from '../types';
 export const apiSlice = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({ baseUrl: 'https://lovely-pear-protocol.glitch.me' }),
-  tagTypes: ['Contacts'],
+  tagTypes: ['Contacts', 'Users'],
   endpoints: (builder) => ({
     getContacts: builder.query<IPerson[], void>({
       query: () => '/contacts',
@@ -39,7 +39,15 @@ export const apiSlice = createApi({
         method: 'POST',
         body: user,
       }),
-      invalidatesTags: ['Contacts'],
+      invalidatesTags: ['Users'],
+    }),
+    loginUser: builder.mutation({
+      query: (user) => ({
+        url: '/login',
+        method: 'POST',
+        body: user,
+      }),
+      invalidatesTags: ['Users'],
     }),
     
   }),
@@ -51,4 +59,5 @@ export const {
   useCreateContactMutation,
   useUpdateContactMutation,
   useCreateUserMutation,
+  useLoginUserMutation,
 } = apiSlice;
