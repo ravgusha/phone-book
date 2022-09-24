@@ -34,7 +34,7 @@ export const NotificationContainer = styled.div`
   }
 
   & .error {
-    background-color: #7676a7;
+    background-color: #ff2015;
   }
 
   &:hover {

@@ -4,14 +4,18 @@ import { INotification } from '../containers/Notification';
 export interface ISlice {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   notifications: INotification[] | any[];
+  name: string;
+  isLoggedIn: boolean;
 }
 
 const initialState: ISlice = {
   notifications: [],
+  name: '',
+  isLoggedIn: false,
 };
 
 const slice = createSlice({
-  name: 'notifications',
+  name: 'slice',
   initialState,
   reducers: {
     setNotification: (state, action) => {
@@ -29,10 +33,14 @@ const slice = createSlice({
         state.notifications.splice(index, 1);
       }
     },
+    setUserInformation: (state, action) => {
+      state.name = action.payload.name;
+      state.isLoggedIn = true;
+    },
   },
 });
 
 const { actions, reducer } = slice;
 
 export default reducer;
-export const { setNotification, deleteNotification } = actions;
+export const { setNotification, deleteNotification, setUserInformation } = actions;

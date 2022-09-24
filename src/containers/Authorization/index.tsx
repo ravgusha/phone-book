@@ -15,7 +15,7 @@ import {
   VALIDATION_EMAIL,
   VALIDATION_LETTERS_ONLY,
 } from './constants';
-import { setNotification } from '../../redux/slice';
+import { setNotification, setUserInformation } from '../../redux/slice';
 
 const Authorization = () => {
   const navigate = useNavigate();
@@ -40,6 +40,7 @@ const Authorization = () => {
   const onSubmitHandler = (data: FieldValues) => {
     console.log(data);
     const user = {
+      name: data.name,
       email: data.email,
       password: data.password,
     };
@@ -52,16 +53,27 @@ const Authorization = () => {
             navigate('/contacts');
           })
           .catch((error) => {
-            dispatch(setNotification({ message: error.error, type: 'error', id: uuidv4() }));
+            dispatch(setNotification({ message: error.data, type: 'error', id: uuidv4() }));
           })
       : loginUser(user)
           .unwrap()
-          .then(() => {
-            dispatch(setNotification({ message: 'You are successfully logged in', type: 'success', id: uuidv4() }));
-            // navigate('/contacts');
+          .then((response) => {
+            if (response.accessToken) {
+              dispatch(setUserInformation(response.user));
+              // localStorage.setItem('user', JSON.stringify(response.user));
+            }
+            navigate('/contacts');
+            dispatch(
+              setNotification({
+                message: 'You are successfully logged in',
+                type: 'success',
+                id: uuidv4(),
+              })
+            );
           })
           .catch((error) => {
-            dispatch(setNotification({ message: error.error, type: 'error', id: uuidv4() }));
+            console.log(error);
+            dispatch(setNotification({ message: error.data, type: 'error', id: uuidv4() }));
           });
   };
   return (
