@@ -37,10 +37,14 @@ const slice = createSlice({
       state.name = action.payload.name;
       state.isLoggedIn = true;
     },
+    deleteUserInformation: (state) => {
+      state.name = '';
+      state.isLoggedIn = false;
+    },
   },
 });
 
 const { actions, reducer } = slice;
 
 export default reducer;
-export const { setNotification, deleteNotification, setUserInformation } = actions;
+export const { setNotification, deleteNotification, setUserInformation, deleteUserInformation } = actions;
