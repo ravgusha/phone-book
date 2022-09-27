@@ -6,12 +6,14 @@ export interface ISlice {
   notifications: INotification[] | any[];
   name: string;
   isLoggedIn: boolean;
+  token: string;
 }
 
 const initialState: ISlice = {
   notifications: [],
   name: '',
-  isLoggedIn: false,
+  isLoggedIn: localStorage.getItem('token') ? true : false,
+  token: localStorage.getItem('token') || '',
 };
 
 const slice = createSlice({
@@ -34,12 +36,14 @@ const slice = createSlice({
       }
     },
     setUserInformation: (state, action) => {
-      state.name = action.payload.name;
+      state.name = action.payload.user.name;
       state.isLoggedIn = true;
+      state.token = action.payload.accessToken;
     },
     deleteUserInformation: (state) => {
       state.name = '';
       state.isLoggedIn = false;
+      state.token = '';
     },
   },
 });
@@ -47,4 +51,5 @@ const slice = createSlice({
 const { actions, reducer } = slice;
 
 export default reducer;
-export const { setNotification, deleteNotification, setUserInformation, deleteUserInformation } = actions;
+export const { setNotification, deleteNotification, setUserInformation, deleteUserInformation } =
+  actions;

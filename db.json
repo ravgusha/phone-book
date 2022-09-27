@@ -1,6 +1,21 @@
 {
   "users": [
     {
+      "email": "hgапghgh@ggvjh.tu",
+      "password": "ghhgghghgh",
+      "id": 2
+    },
+    {
+      "email": "ghjgj@ghf.hj",
+      "password": "$2a$10$wyFh4/YmQL9Hlz8RuyHRcuxpKSavonb.1fJsApLDVdzX1HYHNmAd.",
+      "id": 3
+    },
+    {
+      "email": "raya@mail.ru",
+      "password": "$2a$10$Kuo3bqhfq9eBKjG4cWB1oe.Nuj//ixX2h1IEbXDs6UgvPzCY83Be.",
+      "id": 4
+    },
+    {
       "email": "raya@mail.ruu",
       "password": "$2a$10$FoU4Kfs6Y69SR/lIHOcxvOWUFshO/a8H3Q6ielEz1edkdZGZONSJS",
       "name": "Raya",
@@ -11,7 +26,7 @@
     {
       "firstName": "Alexander",
       "lastName": "Hamilton",
-      "phone": "2012252255",
+      "phone": "201225225",
       "city": "Brooklyn",
       "id": "1"
     },
