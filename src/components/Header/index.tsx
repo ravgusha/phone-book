@@ -16,6 +16,7 @@ const Header = () => {
 
   const logout = () => {
     dispatch(deleteUserInformation());
+    localStorage.removeItem('token');
     navigate('/contacts');
     dispatch(
       setNotification({

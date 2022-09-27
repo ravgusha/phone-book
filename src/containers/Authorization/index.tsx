@@ -60,7 +60,7 @@ const Authorization = () => {
           .then((response) => {
             if (response.accessToken) {
               dispatch(setUserInformation(response.user));
-              // localStorage.setItem('user', JSON.stringify(response.user));
+              localStorage.setItem('token', JSON.stringify(response.accessToken));
             }
             navigate('/contacts');
             dispatch(
