@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const StyledSearch = styled.input`
+export const StyledFilterInput = styled.input`
   width: 100%;
   padding: 15px;
   margin-top: 15px;
@@ -10,4 +10,3 @@ export const StyledSearch = styled.input`
   border: 0;
   outline: 0;
 `;
-
