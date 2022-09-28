@@ -13,6 +13,7 @@ import { Navigate } from 'react-router-dom';
 import { IState } from '../Notification';
 
 const theme = {
+  h: '100%',
   jc: 'start',
   mg: '86px auto',
   as: 'end',

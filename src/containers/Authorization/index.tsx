@@ -1,6 +1,7 @@
 import { Fragment } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
+import { ThemeProvider } from 'styled-components';
 import { v4 as uuidv4 } from 'uuid';
 
 import Button from '../../components/Button';
@@ -15,8 +16,14 @@ import {
   VALIDATION_EMAIL,
   VALIDATION_LETTERS_ONLY,
 } from './constants';
-import { setNotification  } from '../../redux/notificationSlice';
+import { setNotification } from '../../redux/notificationSlice';
 import { setUserInformation } from '../../redux/userSlice';
+
+const theme = {
+  h: 'calc(100vh - 53px)',
+  jc: 'center',
+  mg: '0 auto',
+};
 
 const Authorization = () => {
   const navigate = useNavigate();
@@ -78,73 +85,75 @@ const Authorization = () => {
           });
   };
   return (
-    <ComponentWrapper>
-      <StyledForm onSubmit={handleSubmit(onSubmitHandler)}>
-        <Logo src={lockImage} />
-        <div>
-          {isSignupMode ? (
+    <ThemeProvider theme={theme}>
+      <ComponentWrapper>
+        <StyledForm onSubmit={handleSubmit(onSubmitHandler)}>
+          <Logo src={lockImage} />
+          <div>
+            {isSignupMode ? (
+              <FormInput
+                name={'name'}
+                label={'Name'}
+                register={register}
+                rules={{
+                  required: 'You must enter your name',
+                  minLength: { value: 4, message: 'Name length must be between 4 and 15' },
+                  maxLength: { value: 15, message: 'Name length must be between 4 and 15' },
+                  pattern: {
+                    value: VALIDATION_LETTERS_ONLY,
+                    message: 'Name must contain english letters only',
+                  },
+                }}
+                errors={errors}
+              />
+            ) : null}
             <FormInput
-              name={'name'}
-              label={'Name'}
+              name={'email'}
+              label={'Email'}
               register={register}
               rules={{
-                required: 'You must enter your name',
-                minLength: { value: 4, message: 'Name length must be between 4 and 15' },
-                maxLength: { value: 15, message: 'Name length must be between 4 and 15' },
+                required: 'You must enter your email',
+                minLength: { value: 6, message: 'Email length must be greater than 6' },
                 pattern: {
-                  value: VALIDATION_LETTERS_ONLY,
-                  message: 'Name must contain english letters only',
+                  value: VALIDATION_EMAIL,
+                  message: 'Please enter valid email',
                 },
               }}
               errors={errors}
             />
-          ) : null}
-          <FormInput
-            name={'email'}
-            label={'Email'}
-            register={register}
-            rules={{
-              required: 'You must enter your email',
-              minLength: { value: 6, message: 'Email length must be greater than 6' },
-              pattern: {
-                value: VALIDATION_EMAIL,
-                message: 'Please enter valid email',
-              },
-            }}
-            errors={errors}
-          />
-          <FormInput
-            name={'password'}
-            label={'Password'}
-            register={register}
-            rules={{
-              required: 'You must enter your password',
-              minLength: { value: 6, message: 'Password length must be between 6 and 15' },
-              maxLength: { value: 15, message: 'Password length must be between 6 and 15' },
-              pattern: {
-                value: VALIDATION_DIGITS_AND_LETTERS_ONLY,
-                message: 'Password must contain digits ans letters only',
-              },
-            }}
-            errors={errors}
-          />
-        </div>
-        {isSignupMode ? (
-          <Button label="sign up" type="submit" />
-        ) : (
-          <Fragment>
-            <Button label="login" type="submit" />
-            <StyledLink
-              onClick={() => {
-                navigate('/signup');
+            <FormInput
+              name={'password'}
+              label={'Password'}
+              register={register}
+              rules={{
+                required: 'You must enter your password',
+                minLength: { value: 6, message: 'Password length must be between 6 and 15' },
+                maxLength: { value: 15, message: 'Password length must be between 6 and 15' },
+                pattern: {
+                  value: VALIDATION_DIGITS_AND_LETTERS_ONLY,
+                  message: 'Password must contain digits ans letters only',
+                },
               }}
-            >
-              Don&apos;t have an account? Sign up
-            </StyledLink>
-          </Fragment>
-        )}
-      </StyledForm>
-    </ComponentWrapper>
+              errors={errors}
+            />
+          </div>
+          {isSignupMode ? (
+            <Button label="sign up" type="submit" />
+          ) : (
+            <Fragment>
+              <Button label="login" type="submit" />
+              <StyledLink
+                onClick={() => {
+                  navigate('/signup');
+                }}
+              >
+                Don&apos;t have an account? Sign up
+              </StyledLink>
+            </Fragment>
+          )}
+        </StyledForm>
+      </ComponentWrapper>
+    </ThemeProvider>
   );
 };
 
