@@ -1,17 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { INotification } from '../containers/Notification';
 
-export interface ISlice {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  notifications: INotification[] | any[];
+export interface INotificationSlice {
+  notifications: INotification[];
 }
 
-const initialState: ISlice = {
+const initialState: INotificationSlice = {
   notifications: [],
 };
 
-const slice = createSlice({
-  name: 'notifications',
+const notificationSlice = createSlice({
+  name: 'slice',
   initialState,
   reducers: {
     setNotification: (state, action) => {
@@ -32,7 +31,7 @@ const slice = createSlice({
   },
 });
 
-const { actions, reducer } = slice;
+const { actions, reducer } = notificationSlice;
 
 export default reducer;
 export const { setNotification, deleteNotification } = actions;

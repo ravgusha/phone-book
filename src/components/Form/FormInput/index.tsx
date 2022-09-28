@@ -1,5 +1,4 @@
 import { Fragment, InputHTMLAttributes } from 'react';
-import { IPerson } from '../../../types';
 import {
   UseFormRegister,
   RegisterOptions,
@@ -15,14 +14,12 @@ type FieldErrors<TFieldValues extends FieldValues = FieldValues> = DeepMap<
   FieldError
 >;
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-  name: nameOptions;
+  name: string
   label: string;
   rules: RegisterOptions;
   errors: FieldErrors;
-  register: UseFormRegister<IPerson>;
+  register: UseFormRegister<FieldValues>;
 }
-
-export type nameOptions = 'id' | 'firstName' | 'lastName' | 'phone' | 'city';
 
 const FormInput: React.FC<InputProps> = ({ name, label, rules, errors, register }) => {
   return (

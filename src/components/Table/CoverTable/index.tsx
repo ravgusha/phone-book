@@ -1,5 +1,5 @@
 import { StyledCoverTable } from './style';
-import emptyImage from '../../assets/empty.png';
+import emptyImage from '../../../assets/empty.png';
 
 const CoverTable = () => {
   return (

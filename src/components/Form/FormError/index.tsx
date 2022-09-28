@@ -1,13 +1,11 @@
 import { ErrorMessage } from '@hookform/error-message';
-import { DeepRequired, FieldErrorsImpl } from 'react-hook-form';
+import { DeepRequired, FieldErrorsImpl, FieldValues } from 'react-hook-form';
 
-import { IPerson } from '../../../types';
-import { nameOptions } from '../FormInput';
 import { StyledError } from './style';
 
 interface IFormError {
-  errors: FieldErrorsImpl<DeepRequired<IPerson>>;
-  name: nameOptions;
+  errors: FieldErrorsImpl<DeepRequired<FieldValues>>;
+  name: string;
 }
 
 const FormError = ({ name, errors }: IFormError) => {
