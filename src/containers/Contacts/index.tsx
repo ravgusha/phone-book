@@ -7,7 +7,7 @@ import Table from '../../components/Table';
 import getTableColumns from './tableColumns';
 import ComponentWrapper from '../../components/ComponentWrapper';
 import Link from '../../components/Link';
-import { setNotification } from '../../redux/slice';
+import { setNotification } from '../../redux/notificationSlice';
 import CoverTable from '../../components/Table/CoverTable';
 import { Navigate } from 'react-router-dom';
 import { IState } from '../Notification';
@@ -20,7 +20,7 @@ const theme = {
 
 const Contacts = () => {
   const dispatch = useDispatch();
-  const isLoggedIn = useSelector((state: IState) => state.slice.isLoggedIn);
+  const isLoggedIn = useSelector((state: IState) => state.userSlice.isLoggedIn);
   const { data: contacts = [], isLoading } = useGetContactsQuery();
   const [deleteContact] = useDeleteContactMutation();
 

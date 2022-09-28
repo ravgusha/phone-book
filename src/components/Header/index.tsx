@@ -3,13 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 
 import { IState } from '../../containers/Notification';
-import { deleteUserInformation, setNotification } from '../../redux/slice';
-import Logo from './Logo';
+import { setNotification } from '../../redux/notificationSlice';
+import { deleteUserInformation } from '../../redux/userSlice';
 import { Container, HeaderLink, StyledName } from './style';
+import Logo from './Logo';
 
 const Header = () => {
-  const isLoggedIn = useSelector((state: IState) => state.slice.isLoggedIn);
-  const name = useSelector((state: IState) => state.slice.name);
+  const isLoggedIn = useSelector((state: IState) => state.userSlice.isLoggedIn);
+  const name = useSelector((state: IState) => state.userSlice.name);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();

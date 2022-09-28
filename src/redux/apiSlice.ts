@@ -1,22 +1,9 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-
 import { IPerson } from '../types';
-import store from './configureStore';
-
-export type RootState = ReturnType<typeof store.getState>;
 
 export const apiSlice = createApi({
   reducerPath: 'api',
-  baseQuery: fetchBaseQuery({
-    baseUrl: 'http://localhost:4000',
-    prepareHeaders: (headers, { getState }) => {
-      const token = (getState() as RootState).slice.token;
-      if (token) {
-        headers.set('authorization', `Bearer ${token}`);
-      }
-      return headers;
-    },
-  }),
+  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:4000' }),
   tagTypes: ['Contacts', 'Users'],
   endpoints: (builder) => ({
     getContacts: builder.query<IPerson[], void>({
@@ -62,6 +49,7 @@ export const apiSlice = createApi({
       }),
       invalidatesTags: ['Users'],
     }),
+    
   }),
 });
 

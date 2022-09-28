@@ -15,7 +15,8 @@ import {
   VALIDATION_EMAIL,
   VALIDATION_LETTERS_ONLY,
 } from './constants';
-import { setNotification, setUserInformation } from '../../redux/slice';
+import { setNotification  } from '../../redux/notificationSlice';
+import { setUserInformation } from '../../redux/userSlice';
 
 const Authorization = () => {
   const navigate = useNavigate();

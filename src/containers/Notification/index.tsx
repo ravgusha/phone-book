@@ -1,7 +1,9 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
 import { NotificationContainer } from './style';
-import { deleteNotification, ISlice } from '../../redux/slice';
+import { deleteNotification, INotificationSlice } from '../../redux/notificationSlice';
+import { IUserSlice } from '../../redux/userSlice';
 
 type NotificationType = 'success' | 'error' | 'warning';
 
@@ -12,11 +14,12 @@ export interface INotification {
 }
 
 export interface IState {
-  slice: ISlice;
+  notificationSlice: INotificationSlice;
+  userSlice: IUserSlice;
 }
 
 const Notification = () => {
-  const notifications = useSelector((state: IState) => state.slice.notifications);
+  const notifications = useSelector((state: IState) => state.notificationSlice.notifications);
   const dispatch = useDispatch();
 
   const onClose = (id: string) => {
