@@ -11,6 +11,7 @@ import { setNotification } from '../../redux/notificationSlice';
 import CoverTable from '../../components/Table/CoverTable';
 import { Navigate } from 'react-router-dom';
 import { IState } from '../Notification';
+import TableSearch from './TableSearch';
 
 const theme = {
   jc: 'start',
@@ -41,6 +42,7 @@ const Contacts = () => {
       <ThemeProvider theme={theme}>
         <ComponentWrapper isLoading={isLoading}>
           <Link to="/contacts/add" label="+ create contact" />
+          <TableSearch />
           <Table columns={columns} data={contacts} />
         </ComponentWrapper>
       </ThemeProvider>
