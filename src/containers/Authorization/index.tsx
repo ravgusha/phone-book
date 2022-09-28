@@ -78,7 +78,6 @@ const Authorization = () => {
           });
   };
   return (
-    // isLoading={isLoading} добавить
     <ComponentWrapper>
       <StyledForm onSubmit={handleSubmit(onSubmitHandler)}>
         <Logo src={lockImage} />

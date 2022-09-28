@@ -14,8 +14,8 @@ import {
 import { Logo, StyledForm } from './style';
 import { setNotification } from '../../../redux/notificationSlice';
 import Button from '../../../components/Button';
-import { VALIDATION_DIGITS_ONLY } from '../constants';
 import logoImage from '../../../assets/contact.svg';
+import { VALIDATION_DIGITS_ONLY } from '../constants';
 
 const Form = () => {
   const navigate = useNavigate();
