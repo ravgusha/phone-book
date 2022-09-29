@@ -138,7 +138,16 @@ const Authorization = () => {
             />
           </div>
           {isSignupMode ? (
-            <Button label="sign up" type="submit" />
+            <Fragment>
+              <Button label="sign up" type="submit" />
+              <StyledLink
+                onClick={() => {
+                  navigate('/login');
+                }}
+              >
+                Already gave an account? Login
+              </StyledLink>
+            </Fragment>
           ) : (
             <Fragment>
               <Button label="login" type="submit" />
