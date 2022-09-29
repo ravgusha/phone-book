@@ -25,7 +25,7 @@ const Contacts = () => {
   const { data: contacts = [], isLoading } = useGetContactsQuery();
   const [deleteContact] = useDeleteContactMutation();
 
-  const onDeleteHandle = (id: number) =>
+  const onDeleteHandle = (id: string) =>
     deleteContact(id)
       .unwrap()
       .then(() => {

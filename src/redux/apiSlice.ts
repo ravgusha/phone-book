@@ -27,7 +27,7 @@ export const apiSlice = createApi({
       invalidatesTags: ['Contacts'],
     }),
     deleteContact: builder.mutation({
-      query: (id: number) => ({
+      query: (id: string) => ({
         url: `/contacts/${id}`,
         method: 'DELETE',
       }),

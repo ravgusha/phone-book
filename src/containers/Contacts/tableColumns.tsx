@@ -4,7 +4,7 @@ import CellDeleteButton from '../../components/Cells/CellDeleteButton';
 import CellEditButton from '../../components/Cells/CellEditButton';
 import { IPerson } from '../../types';
 
-const getTableColumns = (deleteContact: (id: number) => Promise<void>) => {
+const getTableColumns = (deleteContact: (id: string) => Promise<void>) => {
   return [
     {
       Header: 'Contact list',
