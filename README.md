@@ -3,8 +3,9 @@
 
 Phone Book - Contact Management App in React.
 ## Deploy: https://ravgusha-phone-book.netlify.app/
-![image](https://user-images.githubusercontent.com/62184992/188235982-5a0d32d5-5c97-4aff-ab5c-86e36239d9c6.png)
-
+![image](https://user-images.githubusercontent.com/62184992/193425104-d9c74ca6-0e4f-4654-88a6-b4c4156c360d.png)
+## Node.js version
+v16.15.1
 ## Available Scripts
 Installing modules from npm:
 ### 
