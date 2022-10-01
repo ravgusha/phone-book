@@ -8,7 +8,7 @@ import getTableColumns from './tableColumns';
 import ComponentWrapper from '../../components/ComponentWrapper';
 import Link from '../../components/Link';
 import { setNotification } from '../../redux/notificationSlice';
-import CoverTable from '../../components/Table/CoverTable';
+import CoverTable from '../../components/Table/TableCover';
 import { Navigate } from 'react-router-dom';
 import { IState } from '../Notification';
 

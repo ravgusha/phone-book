@@ -1,10 +1,11 @@
-/* eslint-disable react/jsx-key */
 import React, { Fragment } from 'react';
 import { useTable, Column, useGlobalFilter } from 'react-table';
 
 import { IPerson } from '../../types';
-import Filter from './FilterTable';
+import TableFilter from './TableFilter';
 import StyledTable from './style';
+import TableHead from './TableHead';
+import TableBody from './TableBody';
 
 interface Props {
   columns: Array<Column<object>>;
@@ -32,29 +33,10 @@ const Table: React.FC<Props> = ({ columns, data }) => {
 
   return (
     <Fragment>
-      <Filter filter={globalFilter} setFilter={setGlobalFilter} />
+      <TableFilter filter={globalFilter} setFilter={setGlobalFilter} />
       <StyledTable {...getTableProps()}>
-        <thead>
-          {headerGroups.map((headerGroup) => (
-            <tr {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map((column) => (
-                <th {...column.getHeaderProps()}>{column.render('Header')}</th>
-              ))}
-            </tr>
-          ))}
-        </thead>
-        <tbody {...getTableBodyProps()}>
-          {rows.map((row) => {
-            prepareRow(row);
-            return (
-              <tr {...row.getRowProps()}>
-                {row.cells.map((cell) => {
-                  return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>;
-                })}
-              </tr>
-            );
-          })}
-        </tbody>
+        <TableHead headerGroups={headerGroups} />
+        <TableBody getTableBodyProps={getTableBodyProps} rows={rows} prepareRow={prepareRow} />
       </StyledTable>
     </Fragment>
   );

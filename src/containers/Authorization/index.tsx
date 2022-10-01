@@ -46,7 +46,6 @@ const Authorization = () => {
   const [loginUser] = useLoginUserMutation();
 
   const onSubmitHandler = (data: FieldValues) => {
-    console.log(data);
     const user = {
       name: data.name,
       email: data.email,
@@ -80,7 +79,6 @@ const Authorization = () => {
             );
           })
           .catch((error) => {
-            console.log(error);
             dispatch(setNotification({ message: error.data, type: 'error', id: uuidv4() }));
           });
   };
@@ -145,7 +143,7 @@ const Authorization = () => {
                   navigate('/login');
                 }}
               >
-                Already gave an account? Login
+                Already have an account? Login
               </StyledLink>
             </Fragment>
           ) : (
