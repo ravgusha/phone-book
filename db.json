@@ -1,0 +1,62 @@
+{
+  "users": [
+    {
+      "email": "hgапghgh@ggvjh.tu",
+      "password": "ghhgghghgh",
+      "id": 2
+    },
+    {
+      "email": "ghjgj@ghf.hj",
+      "password": "$2a$10$wyFh4/YmQL9Hlz8RuyHRcuxpKSavonb.1fJsApLDVdzX1HYHNmAd.",
+      "id": 3
+    },
+    {
+      "email": "raya@mail.ru",
+      "password": "$2a$10$Kuo3bqhfq9eBKjG4cWB1oe.Nuj//ixX2h1IEbXDs6UgvPzCY83Be.",
+      "id": 4
+    },
+    {
+      "email": "raya@mail.ruu",
+      "password": "$2a$10$FoU4Kfs6Y69SR/lIHOcxvOWUFshO/a8H3Q6ielEz1edkdZGZONSJS",
+      "name": "Raya",
+      "id": 5
+    }
+  ],
+  "contacts": [
+    {
+      "firstName": "Alexander",
+      "lastName": "Hamilton",
+      "phone": "201225225",
+      "city": "Brooklyn",
+      "id": "1"
+    },
+    {
+      "firstName": "George",
+      "lastName": "Washington",
+      "phone": "2012252244",
+      "city": "Washington",
+      "id": "2"
+    },
+    {
+      "firstName": "Angelica",
+      "lastName": "Schuyler",
+      "phone": "2012253344",
+      "city": "Chicago",
+      "id": "3"
+    },
+    {
+      "firstName": "Maria",
+      "lastName": "O'Connor",
+      "phone": "6512345689",
+      "city": "NY",
+      "id": "a248a06f"
+    },
+    {
+      "firstName": "Sherlock",
+      "lastName": "Holmes",
+      "phone": "645646554",
+      "city": "London",
+      "id": "7814fd08"
+    }
+  ]
+}

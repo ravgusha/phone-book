@@ -1,7 +1,16 @@
+import Authorization from '../containers/Authorization';
 import Contacts from '../containers/Contacts';
-import Form from '../containers/Contacts/Form';
+import Form from '../containers/Contacts/ContactForm';
 
 const routes = [
+  {
+    path: '/login',
+    component: Authorization,
+  },
+  {
+    path: '/signup',
+    component: Authorization,
+  },
   {
     path: '/contacts',
     component: Contacts,

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const StyledCoverTable = styled.div`
+export const StyledTableCover = styled.div`
   img {
     padding-bottom: 14px;
   }

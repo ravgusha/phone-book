@@ -1,4 +1,4 @@
-import { useForm } from 'react-hook-form';
+import { FieldValues, useForm } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router';
 import { v4 as uuidv4 } from 'uuid';
 import { useDispatch } from 'react-redux';
@@ -12,12 +12,19 @@ import {
   useUpdateContactMutation,
 } from '../../../redux/apiSlice';
 import { Logo, StyledForm } from './style';
-import { setNotification } from '../../../redux/slice';
+import { setNotification } from '../../../redux/notificationSlice';
 import Button from '../../../components/Button';
-import { VALIDATION_DIGITS_ONLY } from '../contants';
 import logoImage from '../../../assets/contact.svg';
+import { VALIDATION_DIGITS_ONLY } from '../../Authorization/constants';
+import { ThemeProvider } from 'styled-components';
 
-const Form = () => {
+const theme = {
+  h: 'calc(100vh - 53px)',
+  jc: 'center',
+  mg: '0 auto',
+};
+
+const ContactForm = () => {
   const navigate = useNavigate();
   const { id } = useParams();
 
@@ -25,7 +32,7 @@ const Form = () => {
   const [createContact] = useCreateContactMutation();
   const [updateContact] = useUpdateContactMutation();
 
-  const contactToEdit = contacts.find((contact) => {
+  const contactToEdit = contacts.find((contact: IPerson) => {
     return contact.id === id;
   });
 
@@ -33,7 +40,7 @@ const Form = () => {
   const isCreate = !id;
   const dispatch = useDispatch();
 
-  const onSubmitHandler = (data: IPerson) => {
+  const onSubmitHandler = (data: FieldValues) => {
     const contact = {
       firstName: data.firstName,
       lastName: data.lastName,
@@ -76,7 +83,7 @@ const Form = () => {
     formState: { errors },
     handleSubmit,
     setValue,
-  } = useForm<IPerson>();
+  } = useForm<FieldValues>();
 
   if (!isCreate && contactToEdit) {
     setValue('firstName', contactToEdit.firstName);
@@ -86,51 +93,53 @@ const Form = () => {
   }
 
   return (
-    <ComponentWrapper isLoading={isLoading}>
-      <StyledForm onSubmit={handleSubmit(onSubmitHandler)}>
-        <Logo src={logoImage} />
-        <div>
-          <FormInput
-            name={'firstName'}
-            label={'First name'}
-            register={register}
-            rules={{ required: 'You must enter your first name' }}
-            errors={errors}
-          />
-          <FormInput
-            name={'lastName'}
-            label={'Last name'}
-            register={register}
-            rules={{ required: 'You must enter your last name' }}
-            errors={errors}
-          />
-          <FormInput
-            name={'phone'}
-            label={'Phone'}
-            register={register}
-            rules={{
-              required: 'You must enter your phone',
-              minLength: { value: 6, message: 'Phone length must be between 6 and 11' },
-              maxLength: { value: 11, message: 'Phone length must be between 6 and 11' },
-              pattern: {
-                value: VALIDATION_DIGITS_ONLY,
-                message: 'Phone number must contain digits only',
-              },
-            }}
-            errors={errors}
-          />
-          <FormInput
-            name={'city'}
-            label={'City'}
-            register={register}
-            rules={{ required: 'You must enter your city' }}
-            errors={errors}
-          />
-        </div>
-        {isCreate ? <Button label="add" type="submit" /> : <Button label="edit" type="submit" />}
-      </StyledForm>
-    </ComponentWrapper>
+    <ThemeProvider theme={theme}>
+      <ComponentWrapper isLoading={isLoading}>
+        <StyledForm onSubmit={handleSubmit(onSubmitHandler)}>
+          <Logo src={logoImage} />
+          <div>
+            <FormInput
+              name={'firstName'}
+              label={'First name'}
+              register={register}
+              rules={{ required: 'You must enter your first name' }}
+              errors={errors}
+            />
+            <FormInput
+              name={'lastName'}
+              label={'Last name'}
+              register={register}
+              rules={{ required: 'You must enter your last name' }}
+              errors={errors}
+            />
+            <FormInput
+              name={'phone'}
+              label={'Phone'}
+              register={register}
+              rules={{
+                required: 'You must enter your phone',
+                minLength: { value: 6, message: 'Phone length must be between 6 and 11' },
+                maxLength: { value: 11, message: 'Phone length must be between 6 and 11' },
+                pattern: {
+                  value: VALIDATION_DIGITS_ONLY,
+                  message: 'Phone number must contain digits only',
+                },
+              }}
+              errors={errors}
+            />
+            <FormInput
+              name={'city'}
+              label={'City'}
+              register={register}
+              rules={{ required: 'You must enter your city' }}
+              errors={errors}
+            />
+          </div>
+          {isCreate ? <Button label="add" type="submit" /> : <Button label="edit" type="submit" />}
+        </StyledForm>
+      </ComponentWrapper>
+    </ThemeProvider>
   );
 };
 
-export default Form;
+export default ContactForm;
