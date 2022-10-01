@@ -8,11 +8,12 @@ import getTableColumns from './tableColumns';
 import ComponentWrapper from '../../components/ComponentWrapper';
 import Link from '../../components/Link';
 import { setNotification } from '../../redux/notificationSlice';
-import CoverTable from '../../components/Table/CoverTable';
+import CoverTable from '../../components/Table/TableCover';
 import { Navigate } from 'react-router-dom';
 import { IState } from '../Notification';
 
 const theme = {
+  h: '100%',
   jc: 'start',
   mg: '86px auto',
   as: 'end',
@@ -24,7 +25,7 @@ const Contacts = () => {
   const { data: contacts = [], isLoading } = useGetContactsQuery();
   const [deleteContact] = useDeleteContactMutation();
 
-  const onDeleteHandle = (id: number) =>
+  const onDeleteHandle = (id: string) =>
     deleteContact(id)
       .unwrap()
       .then(() => {

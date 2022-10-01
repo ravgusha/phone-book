@@ -1,6 +1,6 @@
 import Authorization from '../containers/Authorization';
 import Contacts from '../containers/Contacts';
-import Form from '../containers/Contacts/Form';
+import Form from '../containers/Contacts/ContactForm';
 
 const routes = [
   {
