@@ -28,10 +28,13 @@ npm run build
 - Create a new contact
 - Update an existing contact
 - Show contacts list
+- Search a contact
 - Delete a contact
+- Sign up, login, logout 
 
 ## I Used: 
 - **react-hook-form** for add and edit contact form 
 - **react-table** for displaying contact list
 - **styled-components** for styling
 - **RTK Query** for data fetching
+- **json-server-auth** for authentication
